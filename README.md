@@ -9,7 +9,7 @@
 
 自己写的：
 
-- CapsLock To Modified.ahk
+- CapsLock To Modified.ahk，详见另一个 [Caps Lock作修改键](09. 案例：Caps Lock作修改键.md)
 - RCL To Modified.ahk
 
 别人的：
