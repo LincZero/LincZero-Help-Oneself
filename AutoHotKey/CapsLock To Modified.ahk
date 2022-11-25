@@ -20,58 +20,131 @@ CapsLock::			; 单击CL为Esc键
     return
 
 ;===========================; 复合修饰键
-Capslock & f::			; 短按全选，长按视为按住Ctrl
+;Capslock & f::			; 方案1：短按抬起词选。长按视为按住Ctrl，缺点是词选反应很慢
+;    Send {Ctrl Down}
+;    KeyWait f
+;    return
+;Capslock & f up::
+;    if (A_PriorHotkey = "Capslock & f") {
+;        SendInput {Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
+;    }
+;    else {
+;        SendInput {Ctrl Up}
+;    }
+;    return
+
+Capslock & f::			; 方案2：直接词选。缺点是按词移动时会闪一下，优点是更好理解设计理念，词选响应快
+    Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up} ; 也可以将Ctrl Up移到松开F时
     KeyWait f
-    Send {Ctrl Down}
     return
 Capslock & f up::
-    if (A_PriorHotkey = "Capslock & f") {	; 如果有其他操作
-        Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
-    }
     return
 
-Capslock & g::
+Capslock & g::			; 行选
     Send {Home}{Shift Down}{End}{Shift Up}
+    KeyWait g
     return
 
 ;===========================; 方向区
-Capslock & u::			;上
-    Send {Up}
+Capslock & u::			; 上
+    if (GetKeyState("G", "P") = 1) {
+        Send {Blind}{Ctrl Down}{Home}{Ctrl Up}
+    }
+    else
+    {
+        Send {Blind}{Up}
+    }
     return
+
+Capslock & k::			; 下
+    if (GetKeyState("G", "P") = 1) {
+        Send {Blind}{Ctrl Down}{End}{Ctrl Up}
+    }
+    else
+    {
+        Send {Blind}{Down}
+    }
+
 Capslock & j::			;左
-    Send {Left}
+    if (GetKeyState("F", "P") = 1) {
+        Send {Blind}{Ctrl Down}{Left}{Ctrl Up}
+    }
+    else if (GetKeyState("G", "P") = 1) {
+        Send {Blind}{Home}
+    }
+    else {
+        Send {Blind}{Left}
+    }
     return
-Capslock & k::			;下
-    Send {Down}
+
+Capslock & l::			; 右
+    if (GetKeyState("F", "P") = 1) {
+        Send {Blind}{Ctrl Down}{Right}{Ctrl Up}
+    }
+    else if (GetKeyState("G", "P") = 1) {
+        Send {Blind}{End}
+    }
+    else {
+        Send {Blind}{Right}
+    }
     return
-Capslock & l::			;右
-    Send {Right}
+
+Capslock & h::			; 最左
+    Send {Blind}{Home DownTemp}
     return
-Capslock & h::			;最左
-    Send {Home DownTemp}
+
+Capslock & `;::			; 最右
+    Send {Blind}{End DownTemp}
     return
-Capslock & `;::			;最右
-    Send {End DownTemp}
-    return
+
 ;===========================; 删除区
-Capslock & i::
-    if getkeystate("shift") = 1
-        Send +{Home}{Backspace Down}
+Capslock & i::			; 前删
+    if (GetKeyState("F", "P") = 1) {
+        Send {Blind}{Ctrl Down}{Backspace}{Ctrl Up}
+    }
+    else if getkeystate("shift") = 1
+        Send +{Home}{Backspace}
     else
-        Send {Backspace Down}
+        Send {Backspace}
     return
-Capslock & o::
-    if getkeystate("shift") = 1
-        Send +{End}{Delete Down}
+
+Capslock & o::			; 后删
+    if (GetKeyState("F", "P") = 1) {
+        Send {Blind}{Ctrl Down}{Delete}{Ctrl Up}
+    }
+    else if getkeystate("shift") = 1
+        Send +{End}{Delete}
     else
-        Send {Delete Down}
+        Send {Delete}
     return
+
 ;Capslock & p::
 ;    if getkeystate("shift") = 1
 ;        Send {+Home}{Delete}{+End}{Delete}
 ;    return
-;===========================;
 
+;===========================; 增加区
+; CL 其他行
+Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
+    if (GetKeyState("F", "P") = 1) {
+        Send {End}{Enter}
+    }
+    else if (GetKeyState("G", "P") = 1) {
+        if (A_PriorHotkey = "Capslock & g") { ; 避免全选两次，不要也行，但会更快
+            Send ^c{End}{Enter}^v
+        }
+        else {
+            Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
+        }
+    }
+    else {
+        Send {Blind}{Enter}
+    }
+    return
+
++Space::Send {Blind}{Enter}		; 带Shift的换行
+
+;===========================;
 Capslock & [::SendInput {Blind}{PgUp Down}
 Capslock & [ up::SendInput {Blind}{PgUp Up}
 Capslock & ]::SendInput {Blind}{PgDn Down}
@@ -89,12 +162,6 @@ Capslock & 3::Send {ctrl down}3{ctrl up}
 Capslock & 4::Send {ctrl down}4{ctrl up}
 Capslock & 5::Send {ctrl down}5{ctrl up}
 Capslock & 6::Send {ctrl down}6{ctrl up}
-
-; CL 其他行
-Capslock & Space::SendInput {Blind}{Enter Down}
-Capslock & Space up::SendInput {Blind}{Enter Up}
-+Space::SendInput {Blind}{Enter Down}
-+Space up::SendInput {Blind}{Enter Up}
 
 ; CL 左手行（替Ctrl）
 Capslock & Z::Send ^z
