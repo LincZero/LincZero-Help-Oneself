@@ -1,77 +1,81 @@
 ; AutoHotKey 1.1 Capslock Remapping Script 
 
+;===========================; Capslock状态
+Capslock & Esc::			; 切换大小写
+    if GetKeyState("CapsLock", "T") = 1
+        SetCapsLockState, AlwaysOff
+    else 
+        SetCapsLockState, AlwaysOn
+    return
+
+init := 0
+if (init = 0){			; 防止闪大小锁图标
+    Send, {CapsLock Down}{Esc}{Esc}{CapsLock Up}
+    init := 1
+}
+
+Capslock := 0
+CapsLock::			; 单击CL为Esc键
+    Send, {ESC}
+    return
+
 ;===========================; 复合修饰键
-Capslock & f::
-    SendInput {Blind}{Ctrl DownTemp}
+Capslock & f::			; 短按全选，长按视为按住Ctrl
+    KeyWait f
+    Send {Ctrl Down}
     return
 Capslock & f up::
-    SendInput {Blind}{Ctrl Up}
+    if (A_PriorHotkey = "Capslock & f") {	; 如果有其他操作
+        Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
+    }
     return
+
+Capslock & g::
+    Send {Home}{Shift Down}{End}{Shift Up}
+    return
+
 ;===========================; 方向区
 Capslock & u::			;上
-    SendInput {Blind}{Up DownTemp}
-    return
-Capslock & u up::
-    SendInput {Blind}{Up Up}
+    Send {Up}
     return
 Capslock & j::			;左
-    Send {Blind}{Left DownTemp}
-    return
-Capslock & j up::
-    Send {Blind}{Left Up}
+    Send {Left}
     return
 Capslock & k::			;下
-    Send {Blind}{Down DownTemp}
-    return
-Capslock & k up::
-    Send {Blind}{Down Up}
+    Send {Down}
     return
 Capslock & l::			;右
-    Send {Blind}{Right DownTemp}
-    return
-Capslock & l up::
-    Send {Blind}{Right Up}
+    Send {Right}
     return
 Capslock & h::			;最左
-    Send {Blind}{Home DownTemp}
-    return
-Capslock & h up::
-    Send {Blind}{Home Up}
+    Send {Home DownTemp}
     return
 Capslock & `;::			;最右
-    Send {Blind}{End DownTemp}
-    return
-Capslock & `; up::
-    Send {Blind}{End Up}
+    Send {End DownTemp}
     return
 ;===========================; 删除区
 Capslock & i::
     if getkeystate("shift") = 1
         Send +{Home}{Backspace Down}
     else
-        SendInput {Blind}{Backspace Down}
+        Send {Backspace Down}
     return
-Capslock & i up::SendInput {Blind}{Backspace Up}
 Capslock & o::
     if getkeystate("shift") = 1
         Send +{End}{Delete Down}
     else
-        SendInput {Blind}{Delete Down}
+        Send {Delete Down}
     return
-Capslock & o up::SendInput {Blind}{Delete Up}
 ;Capslock & p::
 ;    if getkeystate("shift") = 1
 ;        Send {+Home}{Delete}{+End}{Delete}
 ;    return
 ;===========================;
+
 Capslock & [::SendInput {Blind}{PgUp Down}
 Capslock & [ up::SendInput {Blind}{PgUp Up}
 Capslock & ]::SendInput {Blind}{PgDn Down}
 Capslock & ] up::SendInput {Blind}{PgDn Up}
-
-; 第三行
-Capslock & n::SendInput ^+{Left} {Backspace}
-Capslock & m::Send, {End}{Enter}
 Capslock & ,::Send {End Enter}
 Capslock & .::SendInput {Blind}{Delete Down}
 Capslock & . up::SendInput {Blind}{Delete Up}
@@ -106,23 +110,6 @@ Capslock & T::Send ^T
 Capslock & A::Send ^A
 Capslock & S::Send ^S
 Capslock & D::Send ^D
-Capslock & G::Send ^G
-
-; CL Shift 切换大小写
-Capslock & Esc::
-If GetKeyState("CapsLock", "T") = 1
-    SetCapsLockState, AlwaysOff
-Else 
-    SetCapsLockState, AlwaysOn
-Return
-
-; 单击CL为Esc键
-CapsLock::Send, {ESC}
-return
-;CapsLock::Send, {VKC0} ; mapped to `
-;CapsLock & c::Run calc
-;CapsLock & n::Run notepad
-return
 
 ; Win 热键
 #c::Run calc ; 原动作是叫小娜
