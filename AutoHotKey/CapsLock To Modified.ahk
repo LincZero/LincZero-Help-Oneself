@@ -1,6 +1,12 @@
 ; AutoHotKey 1.1 Capslock Remapping Script 
 ; 已知BUG：Ctrl Shift F + 连用
 
+;===========================; Mode
+
+Mode_Word := 0	; 词模式
+Mode_Line := 0	; 行模式
+Mode_Select := 0	; 选择模式 beta
+
 ;===========================; Capslock状态
 
 Capslock & Esc::			; 切换大小写
@@ -24,58 +30,47 @@ CapsLock::			; 单击CL为Esc键
 ;===========================; 复合修饰键，方案1，抬起触发词选行选
 				; 长按视为按住Ctrl，缺点是词选反应慢
 
-Capslock & State_Word::			; 词选
+Capslock & f::			; 行选
+    Mode_Line := 1
     KeyWait f
     return
 Capslock & f up::
-    if (A_PriorHotkey = "Capslock & f") {
+    Mode_Line := 0
+    if (A_PriorHotkey = "Capslock & f" && A_PriorKey = "f") {
+        Send {Home}{Shift Down}{End}{Shift Up}
+    }
+    return
+
+Capslock & d::			; 词选
+    Mode_Word := 1
+    KeyWait d
+    return
+Capslock & d up::
+    Mode_Word := 0
+    if (A_PriorHotkey = "Capslock & d" && A_PriorKey = "d") {
         Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
     }
     return
 
-Capslock & g::			; 行选
+Capslock & g::			; 词选
+    Mode_Word := 1
     KeyWait g
     return
 Capslock & g up::
-    if (A_PriorHotkey = "Capslock & g") {
-        Send {Home}{Shift Down}{End}{Shift Up}
+    Mode_Word := 0
+    if (A_PriorHotkey = "Capslock & g" && A_PriorKey = "g") {
+        Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
     }
     return
-
-Capslock & d::			; 行选
-    KeyWait d
-    return
-Capslock & d up::
-    if (A_PriorHotkey = "Capslock & d") {
-        Send {Home}{Shift Down}{End}{Shift Up}
-    }
-    return
-
-;===========================; 复合修饰键，方案2，按下触发词选行选
-				; 缺点是按词移动时会闪一下，而且不能词前后/行前后选，会修改光标位置，功能性差。优点是更好理解设计理念，词选响应快
-
-;Capslock & f::			; 词选
-;    Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up} ; 也可以将Ctrl Up移到松开F时
-;    KeyWait f
-;    return
-;Capslock & f up::
-;    return
-
-;Capslock & g::			; 行选
-;    Send {Home}{Shift Down}{End}{Shift Up}
-;    KeyWait g
-;    return
-
-;Capslock & d::			; 行选
-;    Send {Home}{Shift Down}{End}{Shift Up}
-;    KeyWait d
-;    return
 
 ;===========================; 方向区
 
 Capslock & u::			; 上
-    if (GetKeyState("G", "P") = 1 || GetKeyState("D", "P") = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{Home}{Ctrl Up}
+    }
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{Up}{Shift Up}
     }
     else
     {
@@ -84,8 +79,11 @@ Capslock & u::			; 上
     return
 
 Capslock & k::			; 下
-    if (GetKeyState("G", "P" || GetKeyState("D", "P") = 1) = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{End}{Ctrl Up}
+    }
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{Down}{Shift Up}
     }
     else
     {
@@ -94,11 +92,11 @@ Capslock & k::			; 下
     return
 
 Capslock & j::			;左
-    if (GetKeyState("F", "P") = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{Left}{Ctrl Up}
     }
-    else if (GetKeyState("G", "P") = 1 || GetKeyState("D", "P") = 1) {
-        Send {Blind}{Home}
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{Left}{Shift Up}
     }
     else {
         Send {Blind}{Left}
@@ -106,11 +104,11 @@ Capslock & j::			;左
     return
 
 Capslock & l::			; 右
-    if (GetKeyState("F", "P") = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{Right}{Ctrl Up}
     }
-    else if (GetKeyState("G", "P") = 1 || GetKeyState("D", "P") = 1) {
-        Send {Blind}{End}
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{Right}{Shift Up}
     }
     else {
         Send {Blind}{Right}
@@ -118,31 +116,59 @@ Capslock & l::			; 右
     return
 
 Capslock & h::			; 最左
-    Send {Blind}{Home DownTemp}
+    if (Mode_Word = 1) {
+        Send {Blind}{Shift Down}{Ctrl Down}{Left}{Ctrl Up}{Shift Up}
+    }
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{Home}{Shift Up}
+    }
+    else {
+        Send {Blind}{Home}
+    }
     return
 
 Capslock & `;::			; 最右
-    Send {Blind}{End DownTemp}
+    if (Mode_Word = 1) {
+        Send {Blind}{Shift Down}{Ctrl Down}{Right}{Ctrl Up}{Shift Up}
+    }
+    else if (Mode_Line = 1) {
+        Send {Blind}{Shift Down}{End}{Shift Up}
+    }
+    else {
+        Send {Blind}{End}
+    }
     return
 
 ;===========================; 删除区
 
 Capslock & i::			; 前删
-    if (GetKeyState("F", "P") = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{Backspace}{Ctrl Up}
     }
-    else if getkeystate("shift") = 1
+    else if (Mode_Line = 1) {
         Send +{Home}{Backspace}
+    }
+    else if (Mode_Select = 1) {
+        Send +{Home}{Backspace}
+    }
+    ;else if getkeystate("shift") = 1
+    ;    Send +{Home}{Backspace}
     else
         Send {Backspace}
     return
 
 Capslock & o::			; 后删
-    if (GetKeyState("F", "P") = 1) {
+    if (Mode_Word = 1) {
         Send {Blind}{Ctrl Down}{Delete}{Ctrl Up}
     }
-    else if getkeystate("shift") = 1
-        Send +{End}{Delete}
+    else if (Mode_Line = 1) {
+        Send +{End}{Backspace}
+    }
+    else if (Mode_Select = 1) {
+        Send +{End}{Backspace}
+    }
+    ;else if getkeystate("shift") = 1
+    ;    Send +{End}{Delete}
     else
         Send {Delete}
     return
@@ -156,17 +182,10 @@ Capslock & o::			; 后删
 
 ; CL 其他行
 Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
-    if (GetKeyState("F", "P") = 1) {
+    if (Mode_Line = 1) {
         Send {End}{Enter}
     }
-    else if (GetKeyState("G", "P") = 1 || GetKeyState("D", "P") = 1) {
-    ;    if (A_PriorHotkey = "Capslock & g") {
-    ;        Send ^c{End}{Enter}^v
-    ;        …… 转用方案2要进行的修改 ; 避免全选两次，不要也行，但会更快
-    ;    }
-    ;    else {
-    ;        Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
-    ;    }
+    else if (Mode_Word = 1) {
         Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
     }
     else {
@@ -178,6 +197,29 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
 
 ;===========================; 替换Ctrl区
 
+Capslock & Z::Send {Blind}{ctrl down}z{ctrl up}
+Capslock & X::Send {Blind}{ctrl down}x{ctrl up}
+Capslock & C::Send {Blind}{ctrl down}c{ctrl up}
+Capslock & V::Send {Blind}{ctrl down}v{ctrl up}
+Capslock & B::Send {Blind}{ctrl down}b{ctrl up}
+
+Capslock & Q::
+    Mode_Select := 1
+    Send {Blind}{Shift Down}
+    KeyWait q
+    return
+Capslock & Q up::
+    Mode_Select := 0
+    Send {Blind}{Shift Up}
+    return
+Capslock & W::Send {Blind}{ctrl down}Z{ctrl up}
+Capslock & E::Send {Blind}{ctrl down}X{ctrl up}
+Capslock & R::Send {Blind}{ctrl down}C{ctrl up}
+Capslock & T::Send {Blind}{ctrl down}V{ctrl up}
+
+Capslock & A::Send {Blind}{ctrl down}A{ctrl up}
+Capslock & S::Send {Blind}{ctrl down}S{ctrl up}
+
 Capslock & `::Send {Blind}{ctrl down}`{ctrl up}
 Capslock & 1::Send {Blind}{ctrl down}1{ctrl up}
 Capslock & 2::Send {Blind}{ctrl down}2{ctrl up}
@@ -185,19 +227,6 @@ Capslock & 3::Send {Blind}{ctrl down}3{ctrl up}
 Capslock & 4::Send {Blind}{ctrl down}4{ctrl up}
 Capslock & 5::Send {Blind}{ctrl down}5{ctrl up}
 Capslock & 6::Send {Blind}{ctrl down}6{ctrl up}
-
-Capslock & Z::Send {Blind}{ctrl down}z{ctrl up}
-Capslock & X::Send {Blind}{ctrl down}x{ctrl up}
-Capslock & C::Send {Blind}{ctrl down}c{ctrl up}
-Capslock & V::Send {Blind}{ctrl down}v{ctrl up}
-Capslock & B::Send {Blind}{ctrl down}b{ctrl up}
-Capslock & Q::Send {Blind}{ctrl down}z{ctrl up}
-Capslock & W::Send {Blind}{ctrl down}x{ctrl up}
-Capslock & E::Send {Blind}{ctrl down}c{ctrl up}
-Capslock & R::Send {Blind}{ctrl down}v{ctrl up}
-Capslock & T::Send {Blind}{ctrl down}t{ctrl up}
-Capslock & A::Send {Blind}{ctrl down}a{ctrl up}
-Capslock & S::Send {Blind}{ctrl down}s{ctrl up}
 
 ;===========================;
 
