@@ -151,8 +151,8 @@ Capslock & i::			; 前删
     else if (Mode_Select = 1) {
         Send +{Home}{Backspace}
     }
-    ;else if getkeystate("shift") = 1
-    ;    Send +{Home}{Backspace}
+    else if getkeystate("shift") = 1
+        Send +{Home}{Backspace}
     else
         Send {Backspace}
     return
@@ -167,8 +167,8 @@ Capslock & o::			; 后删
     else if (Mode_Select = 1) {
         Send +{End}{Backspace}
     }
-    ;else if getkeystate("shift") = 1
-    ;    Send +{End}{Delete}
+    else if getkeystate("shift") = 1
+        Send +{End}{Delete}
     else
         Send {Delete}
     return
@@ -183,7 +183,8 @@ Capslock & o::			; 后删
 ; CL 其他行
 Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
     if (Mode_Line = 1) {
-        Send {End}{Enter}
+        ;Send {End}{Enter}
+        Send {Home}{Shift Down}{End}{Shift Up}{Backspace}
     }
     else if (Mode_Word = 1) {
         Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
@@ -197,11 +198,11 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
 
 ;===========================; 替换Ctrl区
 
-Capslock & Z::Send {Blind}{ctrl down}z{ctrl up}
-Capslock & X::Send {Blind}{ctrl down}x{ctrl up}
-Capslock & C::Send {Blind}{ctrl down}c{ctrl up}
-Capslock & V::Send {Blind}{ctrl down}v{ctrl up}
-Capslock & B::Send {Blind}{ctrl down}b{ctrl up}
+Capslock & Z::Send {Blind}{Ctrl Down}z{ctrl up}
+Capslock & X::Send {Blind}{Ctrl Down}x{ctrl up}
+Capslock & C::Send {Blind}{Ctrl Down}c{ctrl up}
+Capslock & V::Send {Blind}{Ctrl Down}v{ctrl up}
+Capslock & B::Send {Blind}{Ctrl Down}b{ctrl up}
 
 Capslock & Q::
     Mode_Select := 1
@@ -212,13 +213,13 @@ Capslock & Q up::
     Mode_Select := 0
     Send {Blind}{Shift Up}
     return
-Capslock & W::Send {Blind}{ctrl down}Z{ctrl up}
-Capslock & E::Send {Blind}{ctrl down}X{ctrl up}
-Capslock & R::Send {Blind}{ctrl down}C{ctrl up}
-Capslock & T::Send {Blind}{ctrl down}V{ctrl up}
+Capslock & W::Send {Blind}{Ctrl Down}z{Ctrl Up}
+Capslock & E::Send {Blind}{Ctrl Down}x{Ctrl Up}
+Capslock & R::Send {Blind}{Ctrl Down}c{Ctrl Up}
+Capslock & T::Send {Blind}{Ctrl Down}v{Ctrl Up}
 
-Capslock & A::Send {Blind}{ctrl down}A{ctrl up}
-Capslock & S::Send {Blind}{ctrl down}S{ctrl up}
+Capslock & A::Send {Blind}{Ctrl Down}a{Ctrl Up}
+Capslock & S::Send {Blind}{Ctrl Down}s{Ctrl Up}
 
 Capslock & `::Send {Blind}{ctrl down}`{ctrl up}
 Capslock & 1::Send {Blind}{ctrl down}1{ctrl up}

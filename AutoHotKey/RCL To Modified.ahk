@@ -7,9 +7,10 @@
 ' & r::Send, _
 ' & t::Send, {+}
 ' & g::Send, -
-' & tab::Send 　　
-' & CapsLock::Send 　　
+' & tab::Send,　　
 ; 这里输出两个全角空格
+' & CapsLock::Send,{Space}{Space}{Space}{Space}
+; 这里输出4个半角空格
 ;' & f::Send, 重复上屏
 
 ' & s::Send,  ……
