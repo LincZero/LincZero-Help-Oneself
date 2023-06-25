@@ -84,7 +84,7 @@ Capslock & u::			; 上
         Send {Blind}{Shift Down}{Up}{Shift Up}
     }
 	else if (Mode_Special = 1) {
-	    Send 7
+	    SendInput 7
 	}
     else
     {
@@ -100,7 +100,7 @@ Capslock & k::			; 下
         Send {Blind}{Shift Down}{Down}{Shift Up}
     }
 	else if (Mode_Special = 1) {
-	    Send 5
+	    SendInput 5
 	}
     else
     {
@@ -116,7 +116,7 @@ Capslock & j::			;左
         Send {Blind}{Shift Down}{Left}{Shift Up}
     }
 	else if (Mode_Special = 1) {
-	    Send 4
+	    SendInput 4
 	}
     else {
         Send {Blind}{Left}
@@ -131,7 +131,7 @@ Capslock & l::			; 右
         Send {Blind}{Shift Down}{Right}{Shift Up}
     }
 	else if (Mode_Special = 1) {
-	    Send 6
+	    SendInput 6
 	}
     else {
         Send {Blind}{Right}
@@ -175,7 +175,7 @@ Capslock & i::			; 前删
         Send +{Home}{Backspace}
     }
 	else if (Mode_Special = 1) {
-	    Send 8
+	    SendInput 8
 	}
     else if getkeystate("shift") = 1
         Send +{Home}{Backspace}
@@ -194,7 +194,7 @@ Capslock & o::			; 后删
         Send +{End}{Backspace}
     }
 	else if (Mode_Special = 1) {
-	    Send 9
+	    SendInput 9
 	}
     else if getkeystate("shift") = 1
         Send +{End}{Delete}
@@ -219,7 +219,7 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
         Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
     }
 	else if (Mode_Special = 1) {
-	    Send 0
+	    SendInput 0
 	}
     else {
         Send {Blind}{Enter}
@@ -232,25 +232,25 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
 
 Capslock & m::
     if (Mode_Special = 1) {
-        Send 1
+        SendInput 1
     }
     return
 
 Capslock & ,::
     if (Mode_Special = 1) {
-        Send 2
+        SendInput 2
     }
     return
 
 Capslock & .::
     if (Mode_Special = 1) {
-        Send 3
+        SendInput 3
     }
     return
 	
 Capslock & n::
     if (Mode_Special = 1) {
-        Send .
+        SendInput {Asc 46}
     }
     return
 
