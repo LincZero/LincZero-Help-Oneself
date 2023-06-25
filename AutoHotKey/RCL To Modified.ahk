@@ -1,5 +1,8 @@
 ﻿; AutoHotKey 1.1 Capslock Remapping Script 
 
+; RCL 第一行
+' & `::Send {Asc 96}{Asc 96}{Asc 96}+{Enter}+{Enter}{Asc 96}{Asc 96}{Asc 96}{Up}{End}
+
 ; RCL 第二行
 ' & q::Send {!}
 ' & w::Send {?}
@@ -16,6 +19,7 @@
 ' & s::Send,  ……
 ' & d::Send, 、
 
+' & x::Send, *
 ' & v::Send, ——
 ;' & b::Send, 常用
 

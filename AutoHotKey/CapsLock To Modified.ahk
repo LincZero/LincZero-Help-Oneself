@@ -30,7 +30,7 @@ CapsLock::			; 单击CL为Esc键
 ;===========================; 复合修饰键，方案1，抬起触发词选行选
 				; 长按视为按住Ctrl，缺点是词选反应慢
 
-Capslock & f::			; 行选
+Capslock & f::			; 行选 Mode_Line
     Mode_Line := 1
     KeyWait f
     return
@@ -41,7 +41,7 @@ Capslock & f up::
     }
     return
 
-Capslock & d::			; 词选
+Capslock & d::			; 词选 Mode_Word
     Mode_Word := 1
     KeyWait d
     return
@@ -52,7 +52,7 @@ Capslock & d up::
     }
     return
 
-Capslock & g::			; 词选
+Capslock & g::			; 词选 Mode_Word
     Mode_Word := 1
     KeyWait g
     return
@@ -60,6 +60,17 @@ Capslock & g up::
     Mode_Word := 0
     if (A_PriorHotkey = "Capslock & g" && A_PriorKey = "g") {
         Send {Ctrl Down}{Left}{Shift Down}{Right}{Shift Up}{Ctrl Up}
+    }
+    return
+
+Capslock & v::			; 特殊 
+    Mode_Special := 1
+    KeyWait v
+    return
+Capslock & v up::
+    Mode_Special := 0
+    if (A_PriorHotkey = "Capslock & v" && A_PriorKey = "v") {
+        Send {Blind}{Ctrl Down}v{ctrl up}
     }
     return
 
@@ -72,6 +83,9 @@ Capslock & u::			; 上
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Up}{Shift Up}
     }
+	else if (Mode_Special = 1) {
+	    Send 7
+	}
     else
     {
         Send {Blind}{Up}
@@ -85,6 +99,9 @@ Capslock & k::			; 下
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Down}{Shift Up}
     }
+	else if (Mode_Special = 1) {
+	    Send 5
+	}
     else
     {
         Send {Blind}{Down}
@@ -98,6 +115,9 @@ Capslock & j::			;左
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Left}{Shift Up}
     }
+	else if (Mode_Special = 1) {
+	    Send 4
+	}
     else {
         Send {Blind}{Left}
     }
@@ -110,6 +130,9 @@ Capslock & l::			; 右
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Right}{Shift Up}
     }
+	else if (Mode_Special = 1) {
+	    Send 6
+	}
     else {
         Send {Blind}{Right}
     }
@@ -151,6 +174,9 @@ Capslock & i::			; 前删
     else if (Mode_Select = 1) {
         Send +{Home}{Backspace}
     }
+	else if (Mode_Special = 1) {
+	    Send 8
+	}
     else if getkeystate("shift") = 1
         Send +{Home}{Backspace}
     else
@@ -167,6 +193,9 @@ Capslock & o::			; 后删
     else if (Mode_Select = 1) {
         Send +{End}{Backspace}
     }
+	else if (Mode_Special = 1) {
+	    Send 9
+	}
     else if getkeystate("shift") = 1
         Send +{End}{Delete}
     else
@@ -189,6 +218,9 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
     else if (Mode_Word = 1) {
         Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
     }
+	else if (Mode_Special = 1) {
+	    Send 0
+	}
     else {
         Send {Blind}{Enter}
     }
@@ -196,12 +228,37 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
 
 +Space::Send {Blind}{Enter}		; 带Shift的换行
 
+;===========================; 小键盘区（有部分在其他区里，如增删移区）
+
+Capslock & m::
+    if (Mode_Special = 1) {
+        Send 1
+    }
+    return
+
+Capslock & ,::
+    if (Mode_Special = 1) {
+        Send 2
+    }
+    return
+
+Capslock & .::
+    if (Mode_Special = 1) {
+        Send 3
+    }
+    return
+	
+Capslock & n::
+    if (Mode_Special = 1) {
+        Send .
+    }
+    return
+
 ;===========================; 替换Ctrl区
 
 Capslock & Z::Send {Blind}{Ctrl Down}z{ctrl up}
 Capslock & X::Send {Blind}{Ctrl Down}x{ctrl up}
 Capslock & C::Send {Blind}{Ctrl Down}c{ctrl up}
-Capslock & V::Send {Blind}{Ctrl Down}v{ctrl up}
 Capslock & B::Send {Blind}{Ctrl Down}b{ctrl up}
 
 Capslock & Q::
@@ -235,9 +292,6 @@ Capslock & [::SendInput {Blind}{PgUp Down}
 Capslock & [ up::SendInput {Blind}{PgUp Up}
 Capslock & ]::SendInput {Blind}{PgDn Down}
 Capslock & ] up::SendInput {Blind}{PgDn Up}
-Capslock & ,::Send {End Enter}
-Capslock & .::SendInput {Blind}{Delete Down}
-Capslock & . up::SendInput {Blind}{Delete Up}
 Capslock & /::SendInput ^+{Right} {Delete}
 
 ; Win 热键
