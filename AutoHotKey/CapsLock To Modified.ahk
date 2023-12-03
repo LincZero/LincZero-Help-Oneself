@@ -83,11 +83,10 @@ Capslock & u::			; 上
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Up}{Shift Up}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 7
-	}
-    else
-    {
+    else if (Mode_Special = 1) {
+        SendInput 7
+    }
+    else {
         Send {Blind}{Up}
     }
     return
@@ -99,11 +98,10 @@ Capslock & k::			; 下
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Down}{Shift Up}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 5
-	}
-    else
-    {
+    else if (Mode_Special = 1) {
+        SendInput 5
+    }
+    else {
         Send {Blind}{Down}
     }
     return
@@ -115,9 +113,9 @@ Capslock & j::			;左
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Left}{Shift Up}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 4
-	}
+    else if (Mode_Special = 1) {
+        SendInput 4
+    }
     else {
         Send {Blind}{Left}
     }
@@ -130,9 +128,9 @@ Capslock & l::			; 右
     else if (Mode_Line = 1) {
         Send {Blind}{Shift Down}{Right}{Shift Up}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 6
-	}
+    else if (Mode_Special = 1) {
+        SendInput 6
+    }
     else {
         Send {Blind}{Right}
     }
@@ -174,9 +172,9 @@ Capslock & i::			; 前删
     else if (Mode_Select = 1) {
         Send +{Home}{Backspace}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 8
-	}
+    else if (Mode_Special = 1) {
+        SendInput 8
+    }
     else if getkeystate("shift") = 1
         Send +{Home}{Backspace}
     else
@@ -193,9 +191,9 @@ Capslock & o::			; 后删
     else if (Mode_Select = 1) {
         Send +{End}{Backspace}
     }
-	else if (Mode_Special = 1) {
-	    SendInput 9
-	}
+    else if (Mode_Special = 1) {
+        SendInput 9
+    }
     else if getkeystate("shift") = 1
         Send +{End}{Delete}
     else
@@ -218,15 +216,16 @@ Capslock & Space::			; 新增行 (P尾换行，G拷贝换行)
     else if (Mode_Word = 1) {
         Send {Home}{Shift Down}{End}{Shift Up}^c{End}{Enter}^v
     }
-	else if (Mode_Special = 1) {
-	    SendInput 0
-	}
+    else if (Mode_Special = 1) {
+        SendInput 0
+    }
     else {
         Send {Blind}{Enter}
     }
     return
 
 +Space::Send {Blind}{Enter}		; 带Shift的换行
+^Space::Send {Blind}{Enter}		; 带Ctrl的换行
 
 ;===========================; 小键盘区（有部分在其他区里，如增删移区）
 

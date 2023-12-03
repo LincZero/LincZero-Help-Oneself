@@ -1,9 +1,64 @@
 ﻿; AutoHotKey 1.1 Capslock Remapping Script 
 
 ; RCL 第一行
-' & `::Send {Asc 96}{Asc 96}{Asc 96}+{Enter}+{Enter}{Asc 96}{Asc 96}{Asc 96}{Up}{End}
+; 需要注意，在EmEditor这种不选择文本进行复制会复制整一行的软件内，该功能会出现bug
+' & `:: ; 代码块
+  clipboardBackup := ClipboardAll ; 保存当前剪贴板内容
+  Clipboard := "====" ; 先复制个flag
+  Send ^c ; 复制选中文本
+  ClipWait ; 等待剪贴板内容更新
+  ; Sleep, 100 ; 延迟100毫秒 ; 但好像第一次使用该功能总是会有bug
+  selectedText := Clipboard ; 要取出再判断否则会出bug
+  if (selectedText == "====") {
+    Clipboard := "```````n`n``````" ; 需要用两个反引号转义为一个
+    Send ^v ; 粘贴
+    Send {Up}{End}
+  } else {
+    codeWrap := "``````"
+    Clipboard := codeWrap "`n" selectedText "`n" codeWrap "`n" ; 放入剪贴板
+    Send ^v ; 粘贴
+  }
+  Clipboard := clipboardBackup ; 恢复剪贴板原始内容
+Return
 
-; RCL 第二行
+' & 1:: ; 反引号
+  clipboardBackup := ClipboardAll ; 保存当前剪贴板内容
+  Clipboard := "====" ; 先复制个flag
+  Send ^c ; 复制选中文本
+  ClipWait ; 等待剪贴板内容更新
+  ; Sleep, 100 ; 延迟100毫秒 ; 但好像第一次使用该功能总是会有bug
+  selectedText := Clipboard ; 要取出再判断否则会出bug
+  if (selectedText == "====") {
+    Clipboard := """"""  ; 连续两个双引号表示一个双引号
+    Send ^v ; 粘贴
+    Send {Left}
+  } else {
+    wrappedText := """" selectedText """"
+    Clipboard := """" selectedText """" ; 放入剪贴板
+    Send ^v ; 粘贴
+  }
+  Clipboard := clipboardBackup ; 恢复剪贴板原始内容
+Return
+
+' & 2:: ; 小括号
+  clipboardBackup := ClipboardAll ; 保存当前剪贴板内容
+  Clipboard := "====" ; 先复制个flag
+  Send ^c ; 复制选中文本
+  ClipWait ; 等待剪贴板内容更新
+  ; Sleep, 100 ; 延迟100毫秒 ; 但好像第一次使用该功能总是会有bug
+  selectedText := Clipboard ; 要取出再判断否则会出bug
+  if (selectedText == "====") {
+    Clipboard := "()" ; 放入剪贴板
+    Send ^v ; 粘贴
+    Send {Left}
+  } else {
+    Clipboard := "(" selectedText ")" ; 放入剪贴板
+    Send ^v ; 粘贴
+  }
+  Clipboard := clipboardBackup ; 恢复剪贴板原始内容
+Return
+
+; RCL 第二行1
 ' & q::Send {!}
 ' & w::Send {?}
 ' & e::Send, =
