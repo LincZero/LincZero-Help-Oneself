@@ -1,0 +1,152 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:                         # 描述头
+  schema_id: LincHe             # 输入法id (不知道为什么，改了样式会出bug)
+  name: 零九鹤                   # 输入法名
+  version: "1.0.0"              # 输入法版本
+  author:                       # 输入法作者
+    - 原方案: 何海峰 <flypy@qq.com>
+    - 修改: LincZero <https://github.com/LincZero/>
+  description: |                # 输入法描述
+    零九鹤音形输入法，魔改自小鹤音形
+
+switches:                       # 开关
+  - name: ascii_mode            # 中英切换
+    reset: 0
+    states: [ 中文, 英文 ]
+  - name: full_shape            # 全角半角
+    states: [ 半角, 全角 ]
+  - name: ascii_punct           # 中英标点
+    states: [ 。，, ．， ]
+    reset: 0
+  - name: simplification        # 简繁体
+    states: [ 简, 繁 ]
+    reset: 0
+
+engine:                         # 四个引擎部件。输入引擎设定，即挂接组件的「处方」
+  processors:                   # 处理各类按键消息
+    - ascii_composer              # ※ 中英文切换
+    - recognizer                  # ※ 与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等
+    - key_binder                  # ※ 在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页键
+    - speller                     # ※ 拼写处理器，接受字符按键，编辑输入码
+    - punctuator                  # ※ 句读处理器，将单个字符按键直接映射为文字符号
+    - selector                    # ※ 选字处理器，处理数字选字键、上、下候选定位、换页键
+    - navigator                   # ※ 处理输入栏内的光标移动键
+    - express_editor              # ※ 编辑器，处理空格、回车上屏、回退键等
+  segmentors:                   # 识别不同内容类型，将输入码分段
+    - ascii_segmentor             # ※ 标识西文段落
+    - matcher                     # ※ 标识符合特定规则的段落，如网址、反查等
+    - abc_segmentor               # ※ 标识常规的文字段落
+    - punct_segmentor             # ※ 标识句读段落
+    - fallback_segmentor          # ※ 标识其他未标识段落
+  translators:                  # 翻译特定类型的编码段为一组候选文字
+    - echo_translator             # ※ 没有其他候选字时，回显输入码
+    - punct_translator            # ※ 转换标点符号
+    # - script_translator         # ※ 脚本翻译器，用于拼音等基于音节表的输入方案
+    - reverse_lookup_translator   # ※ 反查翻译器，用另一种编码方案查码
+    - table_translator            # ※ 码表翻译器，用于仓颉、五笔等基于码表的输入方案，替换 script_translator
+    - table_translator@translator_up
+    - table_translator@translator_select
+    - history_translator@translator_history
+    # - lua_translator@date_translator
+    # - lua_translator@time_translator
+    # - lua_translator@calculator_translator
+    # - fluid_editor              # ※ 句式编辑器，用于以空格断词、回车上屏的【注音】、【语句流】等输入方案，替换 express_editor，也可以写作 fluency_editor
+    # - chord_composer            # ※ 和弦作曲家或曰并击处理器，用于【宫保拼音】等多键并击的输入方案
+  filters:                      # 过滤翻译的结果
+    - simplifier                  # ※ 繁简转换
+    # - simplifier@simplification
+    - uniquifier                  # ※ 过滤重复的候选字，有可能来自繁简转换
+
+key_binder:                     # 按键绑定。engine/processors/key_binder
+  import_preset: default        # 方案切换相关
+  bindings:
+    # 翻页
+    - {accept: bracketleft, send: Page_Up, when: paging} # [ 上翻页
+    - {accept: bracketright, send: Page_Down, when: has_menu} # ] 下翻页
+    - {accept: comma, send: comma, when: paging} # 注销逗号翻页
+    - {accept: period, send: period, when: has_menu} # 注销句号翻页
+    # 选重
+    - {accept: semicolon, send: 1, when: has_menu}  # 2选 ;
+    - {accept: semicolon, send: 2, when: has_menu}  # 2选 ;
+    - {accept: apostrophe, send: 3, when: has_menu} # 3选 '
+    - {accept: comma, send: 4, when: has_menu}      # 4选 ,
+    - {accept: period, send: 5, when: has_menu}     # 5选 .
+    - {accept: slash, send: 6, when: has_menu}      # 6选 /
+    # 顶屏
+    # - {accept: Release+semicolon, send: semicolon, when: has_menu} # 如启用此行，则分号引导符号功能无效
+    # - {accept: Release+period, send: period, when: composing} # 句号顶屏
+    # - {accept: Release+comma, send: comma, when: composing} # 逗号顶屏
+    # 其他
+    # - {accept: "Tab", send: Escape, when: composing}
+    # - {accept: "Shift_R", send: Escape, when: composing}
+    # - {accept: "Shift+space", toggle: full_shape, when: always} # 切换全半角
+    # - {accept: "Control+period", toggle: ascii_punct, when: always} # 切换中英标点
+    # - {accept: "Control+j", toggle: simplification, when: always} # 切换简繁
+
+speller:                        # 拼写处理器。engine/processors/speller
+  alphabet: "abcdefghijklmnopqrstuvwxyz" # ;',./1234567890" # 定义输入键
+  initials: 'abcdefghijklmnopqrstuvwxyz' # 定义仅作始码之键
+  finals: "'"
+  # delimiter: " '" # 音节分音符
+  # max_code_length: 4 # 最大码长，超过则顶字上屏
+  auto_select: true   # 自动上屏
+  # auto_select_pattern: ^;.$|^\w{4}$ # 自动上屏规则，以正则表达式描述，当输入串可以被匹配时自动顶字上屏
+  # auto_clear: max_length # manual|auto|max_length 空码按下一键确认清屏|空码自动清|达到最长码时后码顶上清屏
+
+punctuator:                     # 句读处理器。engine/processors/punctuator
+  import_preset: default
+
+translator:                     # 译码器。engine/translator
+  dictionary: LincHe
+  enable_charset_filter: false  # 是否开启字符集过滤
+  enable_sentence: false        # 是否开启自动造句
+  enable_completion: true       # 提前显示尚未输入完整码的字
+  enable_user_dict: false       # 是否开启用户词典〔动态字词频、用户词〕
+  initial_quality: 9            # 多字典的优先级
+  # disable_user_dict_for_patterns: # 禁止某些编码录入用户词典
+  #   - "^z.*$"
+
+translator_up:
+  dictionary: LincHe_up
+  enable_charset_filter: false
+  enable_sentence: false
+  enable_completion: false
+  enable_user_dict: false
+  initial_quality: 8
+
+translator_select:
+  dictionary: LincHe_select
+  enable_charset_filter: false
+  enable_sentence: false
+  enable_completion: false
+  enable_user_dict: false
+  initial_quality: 7
+
+translator_history:             # 历史记录。engine/translator/history_translator
+  input: ;f
+  size: 1                       # 重复前几次上屏
+  initial_quality: 1            # 首选
+
+simplification:                 # 简繁体
+  opencc_config: s2tw.json
+  option_name: simplification
+  tips: all                     # 简繁对照
+
+recognizer:
+  import_preset: default
+  patterns:
+    # uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
+    uppercase: ""               # 中文状态大写锁定直接上屏
+    reverse_lookup: "[a-z`]*`+[a-z`]*"
+    punct: ""
+    expression: "^=.*$"
+
+menu:                         # 候选项数
+  # alternative_select_labels: [ _, e, x, C, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+  # alternative_select_keys: "_exC1234567890"
+  page_size: 10
+
+style:                        # 横排选重
+  horizontal: true

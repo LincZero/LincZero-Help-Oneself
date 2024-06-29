@@ -1,0 +1,31 @@
+# Rime dictionary
+# encoding: utf-8
+# 自动上屏部分的编码
+
+---
+name: LincHe_up
+version: 1.0.0
+sort: original
+use_preset_vocabulary: true
+...
+
+测试一	oo1
+测试二	oo2
+测试三	oo3
+测试四	oo4
+测试五	oo5
+测试六	oo6
+测试七	oo7
+测试八	oo8
+测试九	oo9
+测试十	oo0
+测试十一	oo;
+测试十二	oo'
+测试十三	oo,
+测试十四	oo.
+测试十五	oo/
+测试十六	oo[
+测试十七	oo]
+测试十八	oo\
+测试十九	oo
+测试二十	oo
