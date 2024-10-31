@@ -880,14 +880,14 @@ content,
 	padding: 2px 3px !important;
 	height: 100%;
 	box-sizing: border-box !important;
-	background-color: #e496ad !important;
+	background-color: #262a2b !important; /* #e496ad */
 	border-radius: 0.3em !important;
 	border: none !important;
 	
-	color: #96376a !important; /*#f56c6c*/
+	color: #4491d8 !important; /*#96376a #f56c6c*/
 	font-size: 1em; /* 不能rem，需要根据标题大小而改变 */
 	line-height: 1em;
-	font-weight: 800 !important;
+	/* font-weight: 800 !important; */
 	/* border: solid 1px #aaa !important; */ /*会增加厚度，舍弃*/
 	/* box-shadow: 0 0 1px #aaa !important; */
 }
