@@ -1,0 +1,39 @@
+/**
+ * 注意：这一类的对齐css，最好能使用等宽字体进行配合
+ *
+ * text-indent 和 padding-inline-start 的区别：是否影响起始光标的位置
+ *
+ * .HyperMD-quote-N，这个N表示是位于第几层嵌套中
+ *
+ * 原设计的考量：
+ *   如果引用块包接文字，开不开这个css没影响。
+ *   如果引用块包块（包表格、代码块、列表），原来的设置才正常让这些块进行缩进。
+ *   但正常来说引用块包这三个根本就不会渲染出来（ob的实时嵌套就是一坨）
+ *
+ * 测试用例：
+ *
+12345678---
+> 01
+> 02
+> 345678---
+> > 04
+> > > 05
+> 345678---
+> - 07
+>   - 08
+> 345678---
+> ```js
+> 11
+> ```
+ *
+ */
+
+.HyperMD-quote.cm-line {
+    text-indent: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-left: 0 !important;
+}
+.markdown-source-view.mod-cm6.is-live-preview 
+ div.HyperMD-quote.cm-line {
+    padding-left: 0 !important;
+}

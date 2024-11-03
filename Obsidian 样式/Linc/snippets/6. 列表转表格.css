@@ -1,0 +1,80 @@
+/*群里老哥的列表转表格*/
+/*使用一个选择器选择列表*/
+.markdown-preview-sizer  ::-webkit-scrollbar{
+        width: 0px;
+}
+.markdown-preview-sizer  ，
+.markdown-preview-sizer  ul ,
+.markdown-preview-sizer  li ul{
+    border-style: solid;
+    border-width: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0px !important;
+    width: 100%;
+    height: inherit !important;
+    display: table-column-group;
+    outline: solid rgb(255, 255, 255) 1px;
+    overflow-block: hidden;
+}
+.markdown-preview-sizer  li{
+    font-size: large !important;
+    border-style: solid;
+    border-width: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0px !important;
+    width: 100% !important; 
+    min-height: 36px;
+    display: -webkit-flex;
+    outline: solid rgb(255, 255, 255) 1px;
+    overflow-x: auto;
+}
+
+.markdown-preview-sizer  .p {
+    width: min-content;
+    min-width: 200px;
+    margin-right: 0px;
+    margin-left: 0px;
+    display: table-cell;
+}
+.markdown-preview-sizer   .div {
+    width: min-content;
+    min-width: 20px !important;
+}
+.markdown-preview-sizer  li::first-line *{
+    width: 100% !important;
+}
+.markdown-preview-sizer  ul:last-child:first-child ~ li .p{
+    width: 100% !important;
+}
+.markdown-preview-sizer  .protyle.attr:last-child:nth-child(3) .p{
+    width: 100% !important;
+}
+.markdown-rendered .list-bullet{
+    float: none;
+    margin-left: -0;
+    display: none;
+}
+
+ul{
+    margin: 0;
+    padding: 0%;
+}
+li{
+    margin: 0 !important;
+    padding: 0% !important;
+}
+li:only-of-type{
+    min-height: 100% !important;
+}
+.list-collapse-indicator{
+    display: none
+}
+.has-list-bullet::before{
+    display: none !important;
+}

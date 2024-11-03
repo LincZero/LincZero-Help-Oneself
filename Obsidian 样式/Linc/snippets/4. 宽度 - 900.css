@@ -1,0 +1,23 @@
+.cm-sizer {
+	min-width: var(--max-width-text);
+	max-width: var(--max-width-text);
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-line{
+	max-width: var(--max-width-text);
+}
+:not(pre) > code[class*="language-"], pre[class*="language-"]{
+	background: var(--secondary-background);
+}
+:root {
+	--max-width-text: 900px;
+}
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer>*:not(iframe),
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .frontmatter-container,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .block-language-tasks,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer>*:not(iframe),
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer .frontmatter-container,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer .block-language-tasks {
+	max-width: var(--max-width-text);
+	width: 100%;
+	min-width: 300px
+}

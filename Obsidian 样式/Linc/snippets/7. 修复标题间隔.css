@@ -1,0 +1,15 @@
+/* 实时模式标题 */
+.cm-s-obsidian .cm-line.HyperMD-header {
+	padding-top: 0 !important;
+}
+
+/* 阅读模式标题 */
+.markdown-rendered div:has( > :is(p,pre,table,ul,ol)) + div > :is(h1,h2,h3,h4,h5,h6) {
+	margin-top: 10px !important;
+	margin-top: 10px !important;
+}
+
+/* 实时模式代码块 */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+	padding-inline-start: 0 !important;
+}

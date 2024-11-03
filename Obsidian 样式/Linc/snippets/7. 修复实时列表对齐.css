@@ -1,0 +1,46 @@
+/**
+ * 缩进对齐
+ *
+ * text-indent 和 padding-inline-start 的区别：是否影响起始光标的位置
+ */
+
+/************** 方案一 (设置等宽字体) *********************/
+
+.cm-formatting.cm-formatting-list.cm-formatting-list-ul { /* 无序列表圆点 */
+  padding-left: 0;
+}
+
+.cm-formatting.cm-formatting-list.cm-formatting-list-ol { /* 有序列表数字 */
+  padding-left: 0;
+}
+
+.cm-indent-spacing  { /* 有时不加可以，有时不加不行，不知道为什么 */
+  padding-left: 0 !important;
+}
+
+/**
+ * 修改为任意一个等宽字体 (字母的宽度相同)，不一定是下面这个字体。如果你的字体本来就等宽，可以不需要这一步
+ * 推荐JetBrainsMono：https://github.com/JetBrains/JetBrainsMono，下载完成后在设置里设置为正文样式即可
+ */
+* {
+    font-family: JetBrains Mono;
+}
+
+/************** 方案二 (只对默认字体生效) *********************/
+
+/*.cm-formatting.cm-formatting-list.cm-formatting-list-ul {
+  margin-left: -0.15em;
+}
+
+.cm-formatting.cm-formatting-list.cm-formatting-list-ol {
+  margin-left: -0.22em;
+}
+
+.cm-indent-spacing  {
+  padding-left: 0;
+}*/
+
+/************** 特殊，修复插件引起的bug **********/
+.outliner-plugin-better-lists .cm-formatting-list-ul {
+  margin-right: 0px !important;
+}

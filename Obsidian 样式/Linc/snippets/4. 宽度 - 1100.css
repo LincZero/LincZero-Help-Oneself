@@ -1,0 +1,11 @@
+/* 宽度有BUG */
+.cm-sizer {
+	min-width: var(--max-width-text);
+	max-width: var(--max-width-text);
+}
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-line{
+	max-width: var(--max-width-text);
+}
+:root {
+	--max-width-text: 1100px;
+}
