@@ -1,0 +1,4 @@
+:root .theme-dark,
+:root .theme-light {
+  --ab-bright-color: #ff0000 !important;
+}

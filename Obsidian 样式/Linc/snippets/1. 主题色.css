@@ -29,6 +29,8 @@
 	--secondary-background-rgb: 27, 27, 27;
 	--main-background: rgb(var(--main-background-rgb));
 	--secondary-background: rgb(var(--secondary-background-rgb));
+
+	--ab-bright-color: #ffbe00;
 }
 
 :root,
@@ -53,4 +55,6 @@
 	/* --secondary-background-rgb: 27, 27, 27; */
 	/* --main-background: rgb(var(--main-background-rgb)); */
 	/* --secondary-background: rgb(var(--secondary-background-rgb)); */
+
+	--ab-bright-color: #f5a14c;
 }
