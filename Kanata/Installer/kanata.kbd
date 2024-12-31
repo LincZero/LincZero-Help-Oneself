@@ -2,22 +2,22 @@
 
 ;; 配置键盘按键 - Dvorak 阵列布局。对于异型键盘或有额外按键的键盘，自行修改
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
+  caps  a     s     d     f     g     h     j     k     l     ;     '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              spc               ralt  rmet  rctl
 )
 
 ;; 默认层 - Windows 的 QWERTY 按键
 (deflayer qwerty
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @l10 a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
+  @l10  a     s     d     f     g     h     j     k     l     ;     '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              spc               ralt  rmet  rctl
 )
 
 ;; Caps层 - 用于输入控制字符等
@@ -25,42 +25,42 @@
 ;; 特殊:
 ;; - Caps
 (deflayer ly10
-  caps f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  caps 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    @l90  r   t    y    up   bspc del  p    [    ]    \
-  -    a    s    lctl @l12 lsft home left down right end '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           ret            ralt rmet rctl
+  caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     @l90   r    t     y     up    bspc  del   p     [     ]     \
+  -     a     s     lctl  @l12  lsft  home  left  down  right end   '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 
 ;; 数字层 todo: * 和 ^ 不可用
 (deflayer ly90
-  -    -    -    -    -    -    -    -    -    -    -    -    -
-  caps 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  -    -    -    -    -    -    /    7    8    9    -    [    ]    \
-  -    -    -    -    -    -    -    4    5    6    +    bspc ret
-  lsft -    -    -    -    -    .    1    2    3    =    rsft
-  lctl lmet lalt           0              ralt rmet rctl
+  -     -     -     -     -     -     -     -     -     -     -     -     -
+  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  -     -     -     -     -     -     /     7     8     9     -     [     ]     \
+  -     -     -     -     -     -     -     4     5     6     +     bspc  ret
+  lsft  -     -     -     -     -     .     1     2     3     =     rsft
+  lctl  lmet  lalt              0                 ralt  rmet  rctl
 )
 
 ;; 符号层 (等我翻找一下转义字符再来弄)
 (deflayer ly20
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
+  caps  a     s     d     f     g     h     j     k     l     ;     '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              spc               ralt  rmet  rctl
 )
 
 ;; Caps+F层 - 行选、扩大范围
 (deflayer ly12
-  caps f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  caps 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    up   bspc del  p    [    ]    \
-  -    a    s    d    f    g    home home down end  end '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           ret            ralt rmet rctl
+  caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     up    bspc  del   p     [     ]     \
+  -     a     s     d     f     g     home  home  down  end   end   '     ret
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 
 (defalias
