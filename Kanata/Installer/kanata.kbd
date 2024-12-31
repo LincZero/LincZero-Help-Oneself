@@ -11,50 +11,55 @@
 )
 
 ;; 默认层 - Windows 的 QWERTY 按键
+;;(deflayer qwerty
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
+;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;三　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;四　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;五　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;)
 (deflayer qwerty
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
   tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
-  @l10  a     s     d     f     g     h     j     k     l     ;     '     ret
+  @l1   a     s     d     f     g     h     j     k     l     ;     @l2   ret
   lsft  z     x     c     v     b     n     m     ,     .     /     rsft
   lctl  lmet  lalt              spc               ralt  rmet  rctl
+)
+(defalias
+  l1 (layer-toggle l1ly)  ;; Caps层
+  l2 (                    ;; 符号层
+    tap-hold 0 180 ' (layer-toggle l8ly) ;; TODO 不应该按时间，应该按按下后有无再按下其他键
+  )
 )
 
 ;; Caps层 - 用于输入控制字符等
 ;; 需要注意：不要与Shift键冲突
 ;; 特殊:
-;; - Caps
-(deflayer ly10
+;;(deflayer
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
+;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;三　  　　  　　  数字  　　  　　  　　  上　  前删  后删  　　  　　  　
+;;四　  　　  　　  词　  行　  页　  最左  左　  下　  右　  最右  　
+;;五　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;)
+(deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  tab   q     w     @l90   r    t     y     up    bspc  del   p     [     ]     \
-  -     a     s     lctl  @l12  lsft  home  left  down  right end   '     ret
+  tab   q     w     @l1e  r     t     y     up    bspc  del   p     [     ]     \
+  -     a     s     lctl  @l1f  lctl  home  left  down  right end   '     ret
   lsft  z     x     c     v     b     n     m     ,     .     /     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
-
-;; 数字层 todo: * 和 ^ 不可用
-(deflayer ly90
-  -     -     -     -     -     -     -     -     -     -     -     -     -
-  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  -     -     -     -     -     -     /     7     8     9     -     [     ]     \
-  -     -     -     -     -     -     -     4     5     6     +     bspc  ret
-  lsft  -     -     -     -     -     .     1     2     3     =     rsft
-  lctl  lmet  lalt              0                 ralt  rmet  rctl
-)
-
-;; 符号层 (等我翻找一下转义字符再来弄)
-(deflayer ly20
-  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
-  caps  a     s     d     f     g     h     j     k     l     ;     '     ret
-  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
-  lctl  lmet  lalt              spc               ralt  rmet  rctl
+(defalias
+  l1f (layer-toggle l2ly) ;; 行层
+  l1e (layer-toggle l9ly) ;; 数字层
 )
 
 ;; Caps+F层 - 行选、扩大范围
-(deflayer ly12
+(deflayer l2ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
   tab   q     w     e     r     t     y     up    bspc  del   p     [     ]     \
@@ -63,12 +68,48 @@
   lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 
+;; -------------------------------------------------------------------------------
+
+;; 数字层
+(deflayer l9ly
+  -     -     -     -     -     -     -     -     -     -     -     -     -
+  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  -     -     -     -     -     -     /     7     8     9     -     [     ]     \
+  -     -     -     -     -     -     @l9h  4     5     6     +     bspc  ret
+  lsft  -     -     -     -     @l9b  .     1     2     3     =     rsft
+  lctl  lmet  lalt              0                 ralt  rmet  rctl
+)
 (defalias
-  ;; right (ight)
-  l10 (layer-toggle ly10)
-  ;; l11 (layer-toggle ly11)
-  l12 (layer-toggle ly12)
-  ;; l13 (layer-toggle ly12)
-  l20 () ;; (layer-toggle ly20)
-  l90 (layer-toggle ly90)
+  l9h (unicode "*")
+  l9b (unicode "^")
+)
+
+;; 符号层 (全角)
+;;(deflayer l8ly
+;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
+;;grv   -     -     -     -     -   | -     -     -     -     -     -     -     -
+;;tab   !     ?     -     /     -!  | /     -     -     /     -     -     -     -
+;;caps  -     ……    -     *     +   | *     -     -     +     -     -     -
+;;lsft  -     -     -     .     =   | .     1     2     =     -     -
+;;-     -     -                 -   |             -     -     -
+;;)
+(deflayer l8ly
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv   -     -     -     -     -     -     -     -     -     -     -     -     -
+  tab   @l8q  @l8w  -     @l8r  @l8t  -     -     -     -     -     -     -     -
+  caps  -     @l8s  @l8d  @l8f  @l8g  -     -     -     -     -     -     -
+  lsft  -     -     -     @l8v  @l8b  -     -     -     -     -     -
+  -     -     -                 -                 -     -     -
+)
+(defalias
+  l8q (unicode "!")
+  l8w (unicode "?")
+  l8s (macro (unicode "…") (unicode "…")) ;; 这里怎么输出两个值……
+  l8d (unicode "、")
+  l8r (unicode "/")
+  l8f (unicode "*")
+  l8v (unicode ".")
+  l8t (unicode "-")
+  l8g (unicode "+")
+  l8b (unicode "=")
 )
