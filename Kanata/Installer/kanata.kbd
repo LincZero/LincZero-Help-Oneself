@@ -1,10 +1,11 @@
+;; 再次声明：按住 Ctrl+Esc+Space 可以强制退出Kanata程序
 ;; 你应该在VSCode等IDE中编辑，保证字符是等宽的，不然编辑起来对不齐
 ;;
 ;; 命名：
 ;; 采取了变量前缀定义，由于kanata语法的设计，变量一般是5个及以下字母组成
 ;; 我将前两个的字母作为层的前缀，以前缀开始的变量往往只有当前层才能使用，通过这种设计可以将脚本模块化、可切割化
 ;; 当前，如果是通用的变量则不需要层前缀
-;; 例如：l1ly表示L1前缀的Layout
+;; 例如：l1ly表示L1前缀的Layout，l1j表示L1层的j键
 
 ;; 配置键盘按键 - Dvorak 阵列布局。对于异型键盘或有额外按键的键盘，自行修改
 (defsrc
@@ -18,30 +19,32 @@
 
 ;; 默认层 - Windows 的 QWERTY 按键
 ;;(deflayer qwerty
-;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
-;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
-;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
-;;四　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
-;;五　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二  　　  prnt  slck  pause
+;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  ins   home  pgup
+;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  del   end   pgdn
+;;三　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　
+;;控制  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　        up
+;;五　  　　  　　  　　  　　  空格  　　  　　  　　  　　  连点  　　  　　  　　  left  down  right
 ;;)
 (deflayer l0ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
   tab   q     w     e     r     t     y     u     i     o     p     [     ]     \
   @l01  a     s     d     f     g     h     j     k     l     ;     @l02  ret
-  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lsft  z     x     c     v     b     n     m     ,     .     /     @l03
   lctl  lmet  lalt              spc               ralt  rmet  rctl
 )
 (defalias
-  l01 (layer-toggle l1ly) ;; Caps层
-  l02 (tap-hold 0 180
+  l01 (layer-toggle l1ly)     ;; Caps层
+  l02 (tap-hold 0 150
     '
-    (layer-toggle l8ly) ;; 符号层 TODO 不应该按时间，应该按按下后有无再按下其他键，不然打字速度快了/慢了都有问题
+    (layer-toggle l7ly)       ;; 符号层 TODO 不应该按时间，应该按按下后有无再按下其他键，不然打字速度快了/慢了都有问题
   )
+  l03 (macro-repeat mltp 50)  ;; 按住模拟连点器
 )
 
-;; TODO Shift+Space
+;; TODO Shift+Space -> Caps+Shift+Space (简化，操作糖)
+;; TODO Ctrl+Space
 
 ;; -------------------------------------------------------------------------------
 
@@ -54,7 +57,7 @@
 ;;   这是牺牲空间利用率换取手感的一种方式。当没有修饰键时，应该用前者，否则用后者
 ;;
 ;;(deflayer
-;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  数字  页层  　　  　　  上　  前删  后删  　　  　　  　
@@ -63,22 +66,22 @@
 ;;)
 (deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  tab   q     w     @l1e  @l1r  t     y     up    bspc  del   p     [     ]     \
-  -     a     s     @l1d  @l1f  @l1d  home  left  down  right end   '     ret
-  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   bspc
+  caps  -     -     @l1e  @l1r  -     -     up    bspc  del   -     -     -     -
+  -     -     -     @l1d  @l1f  @l1d  home  left  down  right end   -     ret
+  lsft  -     -     -     -     -     -     -     -     -     -     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 (defalias
-  l1d (tap-hold 0 180
+  l1d (tap-hold 0 150
     (macro C-left S-C-right)  ;; 词-全选
     lctl                      ;; 词层 (大部分情况能自动满足，无需声明新层)
   )
-  l1f (tap-hold 0 180
+  l1f (tap-hold 0 150
     (macro home S-end)        ;; 行-全选
     (layer-toggle l2ly)       ;; 行层
   )
-  l1r (tap-hold 0 180
+  l1r (tap-hold 0 150
     (macro C-a)               ;; 页-全选
     (layer-toggle l3ly)       ;; 页层
   )
@@ -88,7 +91,7 @@
 ;; Caps-行层 - 行选、扩大范围
 ;;
 ;;(deflayer
-;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  　　  　　  　　  　　  上　  行删  行删  　　  　　  　
@@ -112,7 +115,7 @@
 ;; Caps-页层 - 页选、扩大范围
 ;;
 ;;(deflayer
-;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  零　  一　  二
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  　　  　　  　　  　　  上页  前删  后删  　　  　　  　
@@ -137,47 +140,88 @@
 ;; -------------------------------------------------------------------------------
 
 ;; 数字层
+;;
+;; 相关设计过程详见个人网站的 [[Kanata/HotKey Soft]] 页面
+;;
+;;(deflayer l9ly
+;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
+;;grv   -     -     -     -     -   | -     nlck  /     *     bspc  -     -     -
+;;tab   -     -     -     -     -   | /     7     8     9     -!    (     )     -
+;;caps  -     -     -     -     -   | *     4     5     6     +     -     -
+;;lsft  -     -     -     -     ^   | .     1     2     3     =     =/ret
+;;-     -     -                 0                 -     -     -
+;;)
 (deflayer l9ly
-  -     -     -     -     -     -     -     -     -     -     -     -     -
-  caps  1     2     3     4     5     6     7     8     9     0     -     =     bspc
-  -     -     -     -     -     -     /     7     8     9     -     [     ]     \
-  -     -     -     -     -     -     @l9h  4     5     6     +     bspc  ret
-  lsft  -     -     -     -     @l9b  .     1     2     3     =     rsft
+  -     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  caps  -     -     -     -     -     -     nlck  @l98  @l99  bspc  -     =     bspc
+  -     -     -     -     -     -     @l9y  7     8     9     @l9o2 @l9o3 @l9o4 \
+  -     -     -     -     -     -     @l9h  4     5     6     @l9l2 -     ret
+  lsft  -     -     -     -     @l9b  @l9n  1     2     3     =     ret
   lctl  lmet  lalt              0                 ralt  rmet  rctl
 )
 (defalias
-  l9h (unicode "*")
   l9b (unicode "^")
+  
+  l9n (unicode ".")
+  l9h (unicode "*")
+  l9y (unicode "/")
+  l99 (unicode "*")
+  l98 (unicode "/")
+
+  l9l2 (unicode "+")
+  l9o2 (unicode "-")
+  l9o3 (unicode "(")
+  l9o4 (unicode ")")
 )
 
 ;; -------------------------------------------------------------------------------
 
-;; 符号层 (全角)
-;;(deflayer l8ly
+;; 符号层 (部分强制半角/全角)
+;;
+;;(deflayer l7ly
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
-;;grv   -     -     -     -     -   | -     -     -     -     -     -     -     -
-;;tab   !     ?     -     /     -!  | /     -     -     /     -     -     -     -
-;;caps  -     ……    -     *     +   | *     -     -     +     -     -     -
-;;lsft  -     -     -     .     =   | .     -     -     =     -     -
-;;-     -     -                 -   |             -     -     -
+;;grv   -     -     -     -     -   | 「」   -     -     -     -     -     -     -
+;;tab   !     ?     -     /     -!  | 《》  {}    ```    -     -
+;;caps  -     ……    -     *     +   | “”    ()    `   -     -
+;;lsft  -     -     -     .     =   | 【】  []    -   -
+;;-     -     -                 0                 -     -     -
 ;;)
-(deflayer l8ly
+(deflayer l7ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv   -     -     -     -     -     -     -     -     -     -     -     -     -
-  tab   @l8q  @l8w  -     @l8r  @l8t  -     -     -     -     -     -     -     -
-  caps  -     @l8s  @l8d  @l8f  @l8g  -     -     -     -     -     -     -
-  lsft  -     -     -     @l8v  @l8b  -     -     -     -     -     -
-  -     -     -                 -                 -     -     -
+  tab   @l7q  @l7w  -     @l7r  @l7t  @l7y  @l7u  @l7o  -     -     -     -     -
+  @l7cl -     @l7s  @l7d  @l7f  @l7g  @l7h  @l7j  @l7l  -     -     -     -
+  @l7cl -     -     -     @l7v  @l7b  @l7n  @l7m  @l7m2 -     -     -
+  -     -     -                 0                 -     -     -
 )
 (defalias
-  l8q (unicode "!")
-  l8w (unicode "?")
-  l8s (macro (unicode "…") (unicode "…"))
-  l8d (unicode "、")
-  l8r (unicode "/")
-  l8f (unicode "*")
-  l8v (unicode ".")
-  l8t (unicode "-")
-  l8g (unicode "+")
-  l8b (unicode "=")
+  l7cl () ;; (layer-toggle l8ly)
+
+  l7q (unicode "!")
+  l7w (unicode "?")
+  l7s (macro (unicode "…") (unicode "…"))
+  l7d (unicode "、")
+  l7r (unicode "/")
+  l7f (unicode "*")
+  l7v (unicode ".")
+  l7t (unicode "-")
+  l7g (unicode "+")
+  l7b (unicode "=")
+
+  ;; 中文
+  l7n (macro (unicode "《") (unicode "》") left)
+  l7h (macro (unicode "“") (unicode "”") left)
+  l7y (macro (unicode "【") (unicode "】") left)
+
+  ;; 数学
+  l7m (macro (unicode "{") (unicode "}") left)
+  l7j (macro (unicode "(") (unicode ")") left)
+  l7u (macro (unicode "[") (unicode "]") left)
+
+  ;; md
+  l7m2 ()
+  l7l (macro (unicode "`") (unicode "`") left)
+  l7o (macro (unicode "`") (unicode "`") (unicode "`") ret ret (unicode "`") (unicode "`") (unicode "`") up)
 )
+
+;; TODO 剪切版实现的选中后加符号功能
