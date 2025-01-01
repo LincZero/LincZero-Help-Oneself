@@ -6,6 +6,13 @@
 ;; 我将前两个的字母作为层的前缀，以前缀开始的变量往往只有当前层才能使用，通过这种设计可以将脚本模块化、可切割化
 ;; 当前，如果是通用的变量则不需要层前缀
 ;; 例如：l1ly表示L1前缀的Layout，l1j表示L1层的j键
+;;
+;; 这里省略了一些区域，你可以自己加上：
+;; prnt  slck  pause nlck
+;; ins   home  pgup
+;; del   end   pgdn
+;;       up
+;; left  down  right
 
 ;; 配置键盘按键 - Dvorak 阵列布局。对于异型键盘或有额外按键的键盘，自行修改
 (defsrc
@@ -18,14 +25,15 @@
 )
 
 ;; 默认层 - Windows 的 QWERTY 按键
-;;(deflayer qwerty
-;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二  　　  prnt  slck  pause
-;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  ins   home  pgup
-;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  del   end   pgdn
+;;
+;;零层
+;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二  　　 
+;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　 
+;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　 
 ;;三　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　
-;;控制  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　        up
-;;五　  　　  　　  　　  　　  空格  　　  　　  　　  　　  连点  　　  　　  　　  left  down  right
-;;)
+;;一层  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  符层  　　  　　 
+;;五　  　　  　　  　　  　　  空格  　　  　　  　　  　　  连点  　　  　　  　　 
+;;
 (deflayer l0ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
@@ -56,14 +64,14 @@
 ;;   如果有Ctrl、Shift修饰键，D的位置更顺手
 ;;   这是牺牲空间利用率换取手感的一种方式。当没有修饰键时，应该用前者，否则用后者
 ;;
-;;(deflayer
+;;一层
 ;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  数字  页层  　　  　　  上　  前删  后删  　　  　　  　
+;;三　  　　  　　  数层  页层  　　  　　  上　  前删  后删  　　  　　  　
 ;;四　  　　  　　  词层  行层  词层  最左  左　  下　  右　  最右  　
 ;;五　  　　  　　  　　  　　  回车  　　  　　  　　  　　  　
-;;)
+;;
 (deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   bspc
@@ -90,14 +98,14 @@
 
 ;; Caps-行层 - 行选、扩大范围
 ;;
-;;(deflayer
+;;行层
 ;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  　　  　　  　　  　　  上　  行删  行删  　　  　　  　
 ;;四　  　　  　　  　　  　　  选行  最左  最左  下　  最右  最右  　
 ;;五　  　　  　　  　　  　　  复制  　　  　　  　　  　　  　
-;;)
+;;
 (deflayer l2ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  -     -     -     -     -     -     -     -     -     -     -     -     bspc
@@ -114,14 +122,14 @@
 
 ;; Caps-页层 - 页选、扩大范围
 ;;
-;;(deflayer
+;;页层
 ;;零　  一　  二　  三　  四　  五　  六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  　　  　　  　　  　　  上页  前删  后删  　　  　　  　
 ;;四　  　　  　　  　　  　　  　　  最上  左页  下页  右页  最下  　
 ;;五　  　　  　　  　　  　　  复制  　　  　　  　　  　　  　
-;;)
+;;
 (deflayer l3ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  -     -     -     -     -     -     -     -     -     -     -     -     bspc
@@ -143,14 +151,14 @@
 ;;
 ;; 相关设计过程详见个人网站的 [[Kanata/HotKey Soft]] 页面
 ;;
-;;(deflayer l9ly
+;;数层
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
 ;;grv   -     -     -     -     -   | -     nlck  /     *     bspc  -     -     -
 ;;tab   -     -     -     -     -   | /     7     8     9     -!    (     )     -
 ;;caps  -     -     -     -     -   | *     4     5     6     +     -     -
 ;;lsft  -     -     -     -     ^   | .     1     2     3     =     =/ret
 ;;-     -     -                 0                 -     -     -
-;;)
+;;
 (deflayer l9ly
   -     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  -     -     -     -     -     -     nlck  @l98  @l99  bspc  -     =     bspc
@@ -178,14 +186,14 @@
 
 ;; 符号层 (部分强制半角/全角)
 ;;
-;;(deflayer l7ly
+;;符层
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
 ;;grv   -     -     -     -     -   | 「」   -     -     -     -     -     -     -
 ;;tab   !     ?     -     /     -!  | 《》  {}    ```    -     -
 ;;caps  -     ……    -     *     +   | “”    ()    `   -     -
 ;;lsft  -     -     -     .     =   | 【】  []    -   -
 ;;-     -     -                 0                 -     -     -
-;;)
+;;
 (deflayer l7ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv   -     -     -     -     -     -     -     -     -     -     -     -     -
