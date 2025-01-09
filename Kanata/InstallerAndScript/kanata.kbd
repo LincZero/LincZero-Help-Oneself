@@ -188,15 +188,15 @@
 ;;
 ;;符层
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
-;;grv   -     -     -     -     -   | 「」   -     -     -     -     -     -     -
-;;tab   !     ?     -     /     -!  | 《》  {}    ```    -     -
-;;caps  -     ……    -     *     +   | “”    ()    `   -     -
-;;lsft  -     -     -     .     =   | 【】  []    -   -
+;;grv   -     -     -     -     -   | 「」  -     /**/   -     -     -     -     -
+;;tab   !     ?     -     /     -!  | 《》  {}    ```   -     -
+;;caps  -     ……    -     *     +   | “”    ()    `     -     -
+;;lsft  -     -     -     ——    =   | 【】  []    -     -
 ;;-     -     -                 0                 -     -     -
 ;;
 (deflayer l7ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  grv   -     -     -     -     -     -     -     -     -     -     -     -     -
+  grv   -     -     -     -     -     @l76  -     @l78  -     -     -     -     -
   tab   @l7q  @l7w  -     @l7r  @l7t  @l7y  @l7u  @l7o  -     -     -     -     -
   @l7cl -     @l7s  @l7d  @l7f  @l7g  @l7h  @l7j  @l7l  -     -     -     -
   @l7cl -     -     -     @l7v  @l7b  @l7n  @l7m  @l7m2 -     -     -
@@ -205,31 +205,49 @@
 (defalias
   l7cl () ;; (layer-toggle l8ly)
 
+  ;; 注意连续输入符号有时要间隔一下，不然顺序可能是错的 (两个无序操作之间可以不加数字来间隔)
+  ;; TODO，应该直接黏贴输出，不然撤回操作可能是分多步进行
+
   l7q (unicode "!")
   l7w (unicode "?")
   l7s (macro (unicode "…") (unicode "…"))
   l7d (unicode "、")
   l7r (unicode "/")
   l7f (unicode "*")
-  l7v (unicode ".")
+  l7v (macro (unicode "—") (unicode "—"))
   l7t (unicode "-")
   l7g (unicode "+")
   l7b (unicode "=")
 
   ;; 中文
-  l7n (macro (unicode "《") (unicode "》") left)
-  l7h (macro (unicode "“") (unicode "”") left)
-  l7y (macro (unicode "【") (unicode "】") left)
+  l7n (macro (unicode "《") 5 (unicode "》") 5 left)
+  l7h (macro (unicode "“") 5 (unicode "”") 5 left)
+  l7y (macro (unicode "【") 5 (unicode "】") 5 left)
+  l76 (macro (unicode "「") 5 (unicode "」") 5 left)
 
   ;; 数学
-  l7m (macro (unicode "{") (unicode "}") left)
-  l7j (macro (unicode "(") (unicode ")") left)
-  l7u (macro (unicode "[") (unicode "]") left)
+  l7m (macro (unicode "{") 5 (unicode "}") 5 left)
+  l7j (macro (unicode "(") 5 (unicode ")") 5 left)
+  l7u (macro (unicode "[") 5 (unicode "]") 5 left)
 
   ;; md
   l7m2 ()
-  l7l (macro (unicode "`") (unicode "`") left)
-  l7o (macro (unicode "`") (unicode "`") (unicode "`") ret ret (unicode "`") (unicode "`") (unicode "`") up)
+  l7l (macro (unicode "`") (unicode "`") 5 left)
+  l7o (macro (unicode "`") (unicode "`") (unicode "`") 5 S-ret S-ret 5 (unicode "`") (unicode "`") (unicode "`") 5 up)
+  l78 (macro
+    (unicode "/") 5 (unicode "*") (unicode "*") 5 S-ret 5
+    (unicode " ") 5 (unicode "*") 5 (unicode " ") 5 S-ret 5
+    (unicode " ") 5 (unicode "*") 5 (unicode "/") 5 up    ;; 第三行的自动缩进问题不一定
+  )
 )
 
+;; -------------------------------------------------------------------------------
+
 ;; TODO 剪切版实现的选中后加符号功能
+;; 1. 多行自动加上 /**/、//、>
+;; 2. print/console.log(变量名) -> print/console.log("变量名", 变量名)
+;; 3. 翻译 (不替换，仅悬浮)
+
+;; 这部分也许输入法做会更流畅：
+;; 1. 自动日期 create_time: xxxx-xx-xx
+;; 2. emoji
