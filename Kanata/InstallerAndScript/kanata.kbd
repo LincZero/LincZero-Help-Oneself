@@ -1,5 +1,7 @@
-;; 再次声明：按住 Ctrl+Esc+Space 可以强制退出Kanata程序
-;; 你应该在VSCode等IDE中编辑，保证字符是等宽的，不然编辑起来对不齐
+;; 重要声明：
+;; - 你应该使用 cmd_allowed 版本运行该脚本，如 `kanata_gui_cmd_allowed.exe`
+;; - 按住 Ctrl+Esc+Space 可以强制退出Kanata程序
+;; - 你应该在VSCode等IDE中编辑，保证字符是等宽的，不然编辑起来对不齐
 ;;
 ;; 命名：
 ;; 采取了变量前缀定义，由于kanata语法的设计，变量一般是5个及以下字母组成
@@ -18,6 +20,10 @@
 ;; del   end   pgdn
 ;;       up
 ;; left  down  right
+
+(defcfg
+  danger-enable-cmd yes
+)
 
 ;; 配置键盘按键 - Dvorak 阵列布局。对于异型键盘或有额外按键的键盘，自行修改
 (defsrc
@@ -192,21 +198,22 @@
 ;; -------------------------------------------------------------------------------
 
 ;; 符号层 (部分强制半角/全角)
+;; 右侧记忆参考：按行依次是：中文、成对引号、成对括号、多行
 ;;
-;;符层
+;;符层                                      !1    !2    !3
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
-;;grv   -     -     -     -     -   | 【】  -     /**/   -     -     -     -     -
-;;tab   !     ?     -     /     -!  | 「」  {}    ```   -     -
-;;caps  -     ……    -     *     +   | “”    ()    `     -     -
-;;lsft  -     -     -     ——    =   | 《》  []    -     -
+;;grv   -     -     -     -     -   | 「」  【】   《》  “”    -     -     -     -
+;;tab   !     ?     -     /     -!  | ''    ""    ``    “”    -     -     -     -
+;;caps  -     ……    -     *     +   | -     ()    []   {}     -     -     -
+;;lsft  -     -     -     ——    =   | //    /**/  ```   >     -     -
 ;;-     -     -                 0   |             -     -     -
 ;;
 (deflayer l7ly
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  grv   -     -     -     -     -     @l76  -     @l78  -     -     -     -     -
-  tab   @l7q  @l7w  -     @l7r  @l7t  @l7y  @l7u  @l7o  -     -     -     -     -
-  @l7cl -     @l7s  @l7d  @l7f  @l7g  @l7h  @l7j  @l7l  -     -     -     -
-  @l7cl -     -     -     @l7v  @l7b  @l7n  @l7m  @l7m2 -     -     -
+  grv   -     -     -     -     -     @l76  @l77  @l78  @l79  -     -     -     -
+  tab   @l7q  @l7w  -     @l7r  @l7t  @l7y  @l7u  @l7i  @l7o  -     -     -     -
+  @l7cl -     @l7s  @l7d  @l7f  @l7g  -     @l7j  @l7k  @l7l  -     -     -
+  @l7cl -     -     -     @l7v  @l7b  -     @l7m  @l7m2 -     -     -
   -     -     -                 0                 -     -     -
 )
 (defalias
@@ -227,25 +234,113 @@
   l7b (unicode "=")
 
   ;; 中文
-  l7n (macro (unicode "《") 5 (unicode "》") 5 left)
-  l7h (macro (unicode "“") 5 (unicode "”") 5 left)
-  l7y (macro (unicode "「") 5 (unicode "」") 5 left)
-  l76 (macro (unicode "【") 5 (unicode "】") 5 left)
-
-  ;; 数学
-  l7m (macro (unicode "{") 5 (unicode "}") 5 left)
-  l7j (macro (unicode "(") 5 (unicode ")") 5 left)
-  l7u (macro (unicode "[") 5 (unicode "]") 5 left)
-
-  ;; md
-  l7m2 ()
-  l7l (macro (unicode "`") (unicode "`") 5 left)
-  l7o (macro (unicode "`") (unicode "`") (unicode "`") 5 S-ret S-ret 5 (unicode "`") (unicode "`") (unicode "`") 5 up)
-  l78 (macro
-    (unicode "/") 5 (unicode "*") (unicode "*") 5 S-ret 5
-    (unicode " ") 5 (unicode "*") 5 (unicode " ") 5 S-ret 5
-    (unicode " ") 5 (unicode "*") 5 (unicode "/") 5 up    ;; 第三行的自动缩进问题不一定
+  l76 (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "「$v」""#) 400
+    C-v 100
+    (clipboard-restore 0)
   )
+  l77 (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "【$v】""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l78 (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "《$v》""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l79 (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "“$v”""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+
+  ;; 成对引号
+  ;; l7k (macro (unicode "`") (unicode "`") 5 left)
+  l7y (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "'$v'""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l7u (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "`"$v`"""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l7i (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "``$v``""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l7o (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "“$v”""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+
+  ;; 成对括号
+  l7j (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "($v)""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l7k (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "[$v]""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+  l7l (macro
+    (clipboard-save 0) 100
+    C-c 100
+    (clipboard-cmd-set powershell.exe -c r#"$v = ($Input | Select-Object -First 1); Write-Host -NoNewLine "{$v}""#) 400
+    C-v 100
+    (clipboard-restore 0)
+  )
+
+  ;; 多行
+  l7m (macro
+    (clipboard-save 0) 20
+    (clipboard-set r#"```
+
+```"#) 200
+    C-v 20
+    up 20
+    (clipboard-restore 0)
+  )
+  l7m2 (macro
+    (clipboard-save 0) 20
+    (clipboard-set r#"/**
+ * 
+ */"#) 200
+    C-v 20
+    up 20
+    (clipboard-restore 0)
+  )
+  ;; l78 (macro
+  ;;   (unicode "/") 5 (unicode "*") (unicode "*") 5 S-ret 5
+  ;;   (unicode " ") 5 (unicode "*") 5 (unicode " ") 5 S-ret 5
+  ;;   (unicode " ") 5 (unicode "*") 5 (unicode "/") 5 up    ;; 第三行的自动缩进问题不一定
+  ;; )
 )
 
 ;; 符号层2 (与手机的长按按键想匹配，适用于小键盘，特点是里面塞的更多的是一些 `Shift+` 就可以敲出来的符号)
