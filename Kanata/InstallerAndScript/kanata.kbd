@@ -24,6 +24,11 @@
 (defcfg
   danger-enable-cmd yes
 )
+;; 全局的宏
+(defalias
+  cHom (macro C-home)
+  cEnd(macro C-end)
+)
 
 ;; 配置键盘按键 - Dvorak 阵列布局。对于异型键盘或有额外按键的键盘，自行修改
 (defsrc
@@ -80,17 +85,17 @@
 ;;一层
 ;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;二　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
+;;二　  　　  　　  　　  　　  　　 | 　　  最上  　　  　　  　　  　　  　　  　
 ;;三　  　　  　　  数层  页层  　　 | 　　  上　  前删  后删  　　  　　  　
 ;;四　  　　  　　  词层  行层  词层 | 最左  左　  下　  右　  最右  　
-;;五　  　　  　　  　　  　　  回车 | 　　  　　  　　  　　  　
+;;五　  　　  　　  　　  　　  回车 | 　　  　　  最下  　　  　
 ;;
 (deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   bspc
+  caps  f1    f2    f3    f4    f5    f6    @cHom f8    f9    f10   f11   f12   bspc
   caps  -     -     @l1e  @l1r  -     -     up    bspc  del   -     -     -     -
   -     -     -     @l1d  @l1f  @l1d  home  left  down  right end   -     ret
-  lsft  -     -     -     -     -     -     -     -     -     -     rsft
+  lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 (defalias
@@ -115,15 +120,15 @@
 ;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
 ;;二　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  　　  　　  　　 | 　　  上　  行删  行删  　　  　　  　
-;;四　  　　  　　  　　  　　  选行 | 最左  最左  下　  最右  最右  　
+;;三　  　　  　　  　　  　　  　　 | 　　  最上　行删  行删  　　  　　  　
+;;四　  　　  　　  　　  　　  选行 | 最左  最左  最下　最右  最右  　
 ;;五　  　　  　　  　　  　　  复制 | 　　  　　  　　  　　  　
 ;;
 (deflayer l2ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  -     -     -     -     -     -     -     -     -     -     -     -     bspc
-  tab   -     -     -     -     -     -     up    @l2i  @l2o  -     -     -     \
-  -     -     -     -     -     -     home  home  down  end   end   -     ret
+  tab   -     -     -     -     -     -     @cHom @l2i  @l2o  -     -     -     \
+  -     -     -     -     -     -     home  home  @cEnd end   end   -     ret
   lsft  -     -     -     -     -     -     -     -     -     -     rsft
   lctl  lmet  lalt              @l2rt             ralt  rmet  rctl
 )
@@ -145,17 +150,15 @@
 ;;
 (deflayer l3ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  caps  -     -     -     -     -     -     -     -     -     -     -     -     bspc
+  caps  -     -     -     -     -     -     @cHom -     -     -     -     -     bspc
   tab   -     -     -     -     -     -     pgup  bspc  del   -     -     -     \
-  -     -     -     -     -     -     @l3h  @l3j  pgdn  @l3l  @l3l2 -     ret
-  lsft  -     -     -     -     -     -     -     -     -     -     rsft
+  -     -     -     -     -     -     @cHom @l3j  pgdn  @l3l  @cEnd -     ret
+  lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
 )
 (defalias
   l3j (macro C-pgup)
   l3l (macro C-pgdn)
-  l3h (macro C-home)
-  l3l2 (macro C-end)
 )
 
 ;; -------------------------------------------------------------------------------
