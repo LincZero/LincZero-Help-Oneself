@@ -83,17 +83,17 @@
 ;; 使用频率：Caps层>行层>词层>数层>页层
 ;;
 ;;一层
-;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二
-;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;二　  　　  　　  　　  　　  　　 | 　　  最上  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  数层  页层  　　 | 　　  上　  前删  后删  　　  　　  　
-;;四　  　　  　　  词层  行层  词层 | 最左  左　  下　  右　  最右  　
-;;五　  　　  　　  　　  　　  回车 | 　　  　　  最下  　　  　
+;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二  辅助记忆学习表，左上从数字6开始。如遇部分字符显示不正常，可能是字体不支持。最好是用VSCode打开该说明
+;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  原Caps层       行层(扩大范围)  页层 (扩大范围到页)  词层略，和行层差不多
+;;二　  　　  　　  　　  　　  　　 | 　　  最上  　　  　　  　　  　　  　　  6️⃣🟦🟦🟦🟦  6️⃣🟦🟦🟦🟦  6️⃣🟦🟦🟦🟦
+;;三　  　　  　　  数层  页层  　　 | 最上  上　  前删  后删  　　  　　  　　  ⏫🔼🔙🔜🟦  ⏫⏫🔚🔜🟦  ⏫🔼🔙🔜🟦
+;;四　  　　  　　  词层  行层  词层 | 最左  左　  下　  右　  最右  　　  　　  ⏪️◀️🔽▶️⏩️  ⏪️⏪️⏬⏩️⏩️  ⏫⏪️🔽⏩️⏬
+;;五　  　　  　　  　　  　　  回车 | 　　  　　  最下  　　  　　  　　  　　  🟦🟦⏬🟦🟦  🟦🟦⏬🟦🟦  🟦🟦⏬🟦🟦
 ;;
 (deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  f1    f2    f3    f4    f5    f6    @cHom f8    f9    f10   f11   f12   bspc
-  caps  -     -     @l1e  @l1r  -     -     up    bspc  del   -     -     -     -
+  caps  -     -     @l1e  @l1r  -     @cHom up    bspc  del   -     -     -     -
   -     -     -     @l1d  @l1f  @l1d  home  left  down  right end   -     ret
   lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
@@ -118,18 +118,18 @@
 ;;
 ;;行层
 ;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二
-;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;二　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  　　  　　  　　 | 　　  最上　行删  行删  　　  　　  　
-;;四　  　　  　　  　　  　　  选行 | 最左  最左  最下　最右  最右  　
-;;五　  　　  　　  　　  　　  复制 | 　　  　　  　　  　　  　
+;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  
+;;二　  　　  　　  　　  　　  　　 | 　　  最上　　　  　　  　　  　　  　　  6️⃣⏫🟦🟦🟦
+;;三　  　　  　　  　　  　　  　　 | 最上  最上　行删  行删  　　  　　  　　  ⏫⏫🔚🔜🟦
+;;四　  　　  　　  　　  　　  选行 | 最左  最左  最下　最右  最右  　　  　　  ⏪️⏪️⏬⏩️⏩️
+;;五　  　　  　　  　　  　　  复制 | 　　  　　  最下　　　  　　  　　  　　  🟦🟦⏬🟦🟦
 ;;
 (deflayer l2ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  caps  -     -     -     -     -     -     -     -     -     -     -     -     bspc
-  tab   -     -     -     -     -     -     @cHom @l2i  @l2o  -     -     -     \
+  caps  -     -     -     -     -     -     @cHom -     -     -     -     -     bspc
+  tab   -     -     -     -     -     @cHom @cHom @l2i  @l2o  -     -     -     \
   -     -     -     -     -     -     home  home  @cEnd end   end   -     ret
-  lsft  -     -     -     -     -     -     -     -     -     -     rsft
+  lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
   lctl  lmet  lalt              @l2rt             ralt  rmet  rctl
 )
 (defalias
@@ -143,15 +143,15 @@
 ;;页层
 ;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二
 ;;一　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;二　  　　  　　  　　  　　  　　 | 　　  　　  　　  　　  　　  　　  　　  　
-;;三　  　　  　　  　　  　　  　　 | 　　  上页  前删  后删  　　  　　  　
+;;二　  　　  　　  　　  　　  　　 | 　　  最上  　　  　　  　　  　　  　　  　
+;;三　  　　  　　  　　  　　  　　 | 最上  上页  前删  后删  　　  　　  　
 ;;四　  　　  　　  　　  　　  　　 | 最上  左页  下页  右页  最下  　
-;;五　  　　  　　  　　  　　  复制 | 　　  　　  　　  　　  　
+;;五　  　　  　　  　　  　　  复制 | 　　  　　  最下  　　  　
 ;;
 (deflayer l3ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   caps  -     -     -     -     -     -     @cHom -     -     -     -     -     bspc
-  tab   -     -     -     -     -     -     pgup  bspc  del   -     -     -     \
+  tab   -     -     -     -     -     @cHom pgup  bspc  del   -     -     -     \
   -     -     -     -     -     -     @cHom @l3j  pgdn  @l3l  @cEnd -     ret
   lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
   lctl  lmet  lalt              ret               ralt  rmet  rctl
