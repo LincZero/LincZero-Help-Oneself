@@ -81,6 +81,16 @@
 ;;   这是牺牲空间利用率换取手感的一种方式。当没有修饰键时，应该用前者，否则用后者
 ;;
 ;; 使用频率：Caps层>行层>词层>数层>页层
+;; 
+;; 数字层设计:
+;; 不同于方向键，切换窗口的情况下，右手握鼠标的概率很大。所以尽量放左半区
+;; win+数字顺手度: 4 5 2 3 1 6 | 8 9 7 0 - = (updating)
+;; -和+可以来放大缩小窗口
+;; 记忆/通用度: 尽量分配一些大家电脑都有的，也可以辅助拼音记忆
+;; 频率: 文件资源管理器 > 浏览器 > 文本编辑器 > 翻译
+;; (1) 浏览器 (2) 翻译 (3) 文本编辑器 (4) 文件资源管理器 (5) 文本编辑器2
+;; 其中文件资源管理器的创建是 win+e，也比较好用
+;; 指位分配建议: caps区通常将左手区右移一个键位。12中指，3456食指
 ;;
 ;;一层
 ;;零　  一　  二　  三　  四　  五　 | 六　  七　  八　  九　  十　  十一  十二  辅助记忆学习表，左上从数字6开始。如遇部分字符显示不正常，可能是字体不支持。最好是用VSCode打开该说明
@@ -92,7 +102,7 @@
 ;;
 (deflayer l1ly
   caps  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  caps  f1    f2    f3    f4    f5    f6    @cHom f8    f9    f10   f11   f12   bspc
+  caps  @l11  @l12  @l13  @l14  @l15  @l16  @cHom @l18  @l19  @l110  @l111 @l112 bspc
   caps  -     -     @l1e  @l1r  -     @cHom up    bspc  del   -     -     -     -
   -     -     -     @l1d  @l1f  @l1d  home  left  down  right end   -     ret
   lsft  -     -     -     -     -     -     -     @cEnd -     -     rsft
@@ -112,6 +122,19 @@
     (layer-toggle l3ly)       ;; 页层
   )
   l1e (layer-toggle l9ly)     ;; 数字层
+  
+  l11 (macro M-1)
+  l12 (macro M-2)
+  l13 (macro M-3)
+  l14 (macro M-4)
+  l15 (macro M-5)
+  l16 (macro M-6)
+  ;; l17 (macro M-7)
+  l18 (macro M-8)
+  l19 (macro M-9)
+  l110 (macro M-0)
+  l111 (macro M--)
+  l112 (macro M-=)
 )
 
 ;; Caps-行层 - 行选、扩大范围
