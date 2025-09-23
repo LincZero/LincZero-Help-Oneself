@@ -230,8 +230,8 @@
 ;;esc   f1    f2    f3    f4    f5  | f6    f7    f8    f9    f10   f11   f12
 ;;grv   -     -     -     -     -   | 「」  【】   《》  “”    -     -     -     -
 ;;tab   !     ?     -     /     -!  | ''    ""    ``    “”    -     -     -     -
-;;caps  -     ……    -     *     +   | -     ()    []   {}     -     -     -
-;;lsft  -     -     -     ——    =   | //    /**/  ```   >     -     -
+;;caps  -    ……     、    *     +   | -     ()    []   {}     -     -     -
+;;lsft  _    ，     。    ——    =   | //    /**/  ```   >     -     -
 ;;-     -     -                 0   |             -     -     -
 ;;
 (deflayer l7ly
@@ -239,7 +239,7 @@
   grv   -     -     -     -     -     @l76  @l77  @l78  @l79  -     -     -     -
   tab   @l7q  @l7w  -     @l7r  @l7t  @l7y  @l7u  @l7i  @l7o  -     -     -     -
   @l7cl -     @l7s  @l7d  @l7f  @l7g  -     @l7j  @l7k  @l7l  -     -     -
-  @l7cl -     -     -     @l7v  @l7b  -     @l7m  @l7m2 -     -     -
+  @l7cl @l7z  @l7x  @l7c  @l7v  @l7b  -     @l7m  @l7m2 -     -     -
   -     -     -                 0                 -     -     -
 )
 (defalias
@@ -254,6 +254,9 @@
   l7d (unicode "、")
   l7r (unicode "/")
   l7f (unicode "*")
+  l7z (unicode "_")
+  l7x (unicode "，")
+  l7c (unicode "。")
   l7v (macro (unicode "—") (unicode "—"))
   l7t (unicode "-")
   l7g (unicode "+")
