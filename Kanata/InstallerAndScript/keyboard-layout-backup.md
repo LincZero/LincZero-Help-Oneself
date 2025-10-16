@@ -1,43 +1,6 @@
-# keyboard-layout-editor
-
-感谢 https://keyboard-layout-editor.com/ 提供的键盘快捷键示意图生成方案
-
-图片使用说明: 中间表示长按，下面表示短按
-
-## 默认层
-
-![](./assets/keyboard-layout-default.png)
-
-## Caps-光标层
-
-![](./assets/keyboard-layout-cursor.png)
-
-## Caps-词层
-
-(相当于按住Ctrl键的光标层，光标的左右移动会以单词为单位)
-
-## Caps-行层
-
-![](./assets/keyboard-layout-line.png)
-
-## Caps-页层
-
-![](./assets/keyboard-layout-page.png)
-
-## Caps-数字层
-
-![](./assets/keyboard-layout-num.png)
-
-## 符号层
-
-> [!warning]
-> with bug，当前的成对括号部分存在问题，无法在保证快速的前提下识别是否有选中内容
-
-![](./assets/keyboard-layout-sign.png)
-
 # keyboard-layout-editor 源码备份
 
-这里仅用于备份源码，便于日后进行修改。均基于 "Default 60%" 进行修改
+这里仅用于备份 https://keyboard-layout-editor.com/ 源码，便于日后进行修改。以下均基于 "Default 60%" 进行修改
 
 ## 默认层
 
