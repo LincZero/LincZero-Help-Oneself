@@ -29,7 +29,7 @@
 ```json
 ["~\n`","!\n1","@\n2","#\n3","$\n4","%\n5","^\n6",{c:"#2D6CA1"},"&\n\n\n\n\n\n\n\n\n\n最上",{c:"#cccccc"},"*\n8","(\n9",")\n0","_\n-","+\n=",{w:2},"Backspace"],
 [{w:1.5},"Tab","Q","W","E","R","T",{c:"#2D6CA1"},"Y\n\n\n\n\n\n\n\n\n\n最上",{c:"#407DD5"},"U\n\n\n\n\n\n\n\n\n\n最上","I\n\n\n\n\n\n\n\n\n\n删左行","O\n\n\n\n\n\n\n\n\n\n删右行",{c:"#cccccc"},"P","{\n[","}\n]",{w:1.5},"|\n\\"],
-[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S","D","F",{c:"#615555"},"G\n\n\n\n\n\n\n\n\n\n被占",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n最左",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n最左","K\n\n\n\n\n\n\n\n\n\n最下","L\n\n\n\n\n\n\n\n\n\n最右",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n最右",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
+[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S","D",{c:"#615555"},"F\n\n\n\n\n\n\n\n\n被占\n选中行",{c:"#cccccc"},"G",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n最左",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n最左","K\n\n\n\n\n\n\n\n\n\n最下","L\n\n\n\n\n\n\n\n\n\n最右",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n最右",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
 [{w:2.25},"Shift","Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
 [{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:7,w:6.25},"",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
 ```

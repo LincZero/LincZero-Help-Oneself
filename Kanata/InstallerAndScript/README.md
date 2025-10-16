@@ -1,3 +1,5 @@
+# LincCaps
+
 ## 使用
 
 exe是可执行程序，如果你是windows，直接用这个就行了。
@@ -13,33 +15,41 @@ kanata.kbd 是脚本，与exe在同一目录下，双击exe就可以运行了！
 
 图片使用说明: 中间表示长按，下面表示短按
 
-## 默认层
+### 默认层
 
 ![](./assets/keyboard-layout-default.png)
 
-## Caps-光标层
+### 两个特殊层
+
+这里还有两个特殊层，但内容过少我就不另外制图了
+
+- Caps + 空格 = 回车
+- Shift + 空格 = Shift + 回车
+- Ctrl + 空格 = Ctrl + 回车
+
+### Caps-光标层
 
 Caps 与其子层与 Shift 按键完全兼容，**可以同时按住 Caps 和 Shift 进行选择**
 
 ![](./assets/keyboard-layout-cursor.png)
 
-## Caps-词层
+### Caps-词层
 
 (相当于按住Ctrl键的光标层，光标的左右移动会以单词为单位)
 
-## Caps-行层
+### Caps-行层
 
 ![](./assets/keyboard-layout-line.png)
 
-## Caps-页层
+### Caps-页层
 
 ![](./assets/keyboard-layout-page.png)
 
-## Caps-数字层
+### Caps-数字层
 
 ![](./assets/keyboard-layout-num.png)
 
-## 符号层
+### 符号层
 
 > [!warning]
 > with bug，当前的成对括号部分存在问题，无法在保证快速的前提下识别是否有选中内容
