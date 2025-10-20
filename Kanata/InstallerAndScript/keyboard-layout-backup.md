@@ -66,3 +66,14 @@
 [{w:2.25},"Shift",{c:"#2D6CA1"},"Z\n\n\n\n\n\n\n\n\n\n_","X\n\n\n\n\n\n\n\n\n\n，","C\n\n\n\n\n\n\n\n\n\n。","V\n\n\n\n\n\n\n\n\n\n折——","B\n\n\n\n\n\n\n\n\n\n=",{c:"#407DD5"},"N\n\n\n\n\n\n\n\n\n\n括2「","M\n\n\n\n\n\n\n\n\n\n括2《","<\n\n\n\n\n\n\n\n\n\n括2 /*",">\n\n\n\n\n\n\n\n\n\n括2 <",{c:"#cccccc"},"?\n/",{w:2.75},"Shift"],
 [{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:7,w:6.25},"",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
 ```
+
+## vim默认层
+
+```json
+[{c:"#b35050"},"ESC\n\n\n\n\n\n\n\n\n命令层"],
+[{c:"#2D6CA1"},"~\n\n\n\n\n\n\n\n\n\n到标注",{c:"#cccccc"},"!\n1","@\n2","#\n3",{c:"#2D6CA1"},"$\n4\n\n\n\n\n\n\n\n行尾",{c:"#cccccc"},"%\n5\n\n\n\n\n\n\n\n括号匹",{c:"#2D6CA1"},"^\n6\n\n\n\n\n\n\n\n行首",{c:"#cccccc"},"&\n7\n\n\n\n\n\n\n\n重复","*\n8\n\n\n\n\n\n\n\n下缩进",{c:"#c9812c"},"(\n9\n\n\n\n\n\n\n\n句左",")\n0\n\n\n\n\n\n\n\n句右","_\n\n\n\n\n\n\n\n\n\n前句首","+\n\n\n\n\n\n\n\n\n下句首\n格式化",{c:"#cccccc",w:2},"Backspace"],
+[{w:1.5},"Tab","Q\n\n\n\n\n\n\n\n\n\n录制宏",{c:"#2D6CA1"},"W\n\n\n\nword\n\n\n\n\n\n后一词","E\n\n\n\nend\n\n\n\n\n\n词尾",{c:"#cccccc"},"R\n\n\n\nreplace\n\n\n\n\n\n替换","T\n\n\n\ntill\n\n\n\n\n\ntill",{c:"#c9812c"},"Y\n\n\n\nyank\n\n\n\n\n拷贝行\n拷贝",{c:"#cccccc"},"U\n\n\n\nundo\n\n\n\n\n\n撤销",{t:"#b35050"},"I\n\n\n\nInstall\n\n\n\n\n行首插\n插入层","O\n\n\n\nopen\n\n\n\n\n前分段\n后分段",{t:"#000000"},"P\n\n\n\npaste\n\n\n\n\n黏贴前\n黏贴后","{\n\n\n\n\n\n\n\n\n段首\n杂项","}\n\n\n\n\n\n\n\n\n段尾\n杂项",{w:1.5},"|\n\\"],
+[{w:1.75},"Caps Lock",{t:"#b35050"},"A\n\n\n\nappend\n\n\n\n\n和尾加\n附加","S\n\n\n\n\n\n\n\n\n删除行\n删除",{c:"#c9812c",t:"#000000"},"D\n\n\n\nDelete\n\n\n\n\n\n删除","F\n\n\n\nfind\n\n\n\n\n\n查找",{c:"#615555"},"G\n\n\n\n\n\n\n\n\n行号\n附加6",{c:"#407DD5"},"H\n\n\n\n\n\n\n\n\n最上\n左","J\n\n\n\n\n\n\n\n\n并两行\n下","K\n\n\n\n\n\n\n\n\n帮助\n上","L\n\n\n\n\n\n\n\n\n最下\n右",{c:"#cccccc"},":\n\n\n\n\n\n\n\n\n\n重复",{c:"#2D6CA1"},"\"\n\n\n\n\n\n\n\n\n\n到标注",{c:"#cccccc",w:2.25},"Enter"],
+[{c:"#b35050",w:2.25},"Shift\n\n\n\n\n\n\n\n\n大写命令层",{c:"#615555"},"Z\n\n\n\n\n\n\n\n\n\n命令5",{c:"#cccccc"},"X\n\n\n\n\n\n\n\n\n\n向左删",{t:"#b35050"},"C\n\n\n\nchange\n\n\n\n\n\n修改",{c:"#b35050",t:"#000000"},"V\n\n\n\nvisual\n\n\n\n\n\n可视层",{c:"#2D6CA1"},"B\n\n\n\n\n\n\n\n\n前一词\n前一词",{c:"#c9812c"},"N\n\n\n\nnext\n\n\n\n\n向前查\n向后查",{c:"#cccccc"},"M\n\n\n\n\n\n\n\n\n\n标注","<\n\n\n\n\n\n\n\n\n左缩进\n反向",">\n\n\n\n\n\n\n\n\n右缩进\n重复令",{c:"#c9812c"},"?\n/\n\n\n\n\n\n\n\n\n向后查",{c:"#cccccc",w:2.75},"Shift"],
+[{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:7,w:6.25},"",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
+```
