@@ -17,8 +17,8 @@
 ```json
 ["~\n`","!\n1","@\n2","#\n3","$\n4","%\n5","^\n6",{c:"#2D6CA1"},"&\n\n\n\n\n\n\n\n\n\n最上",{c:"#cccccc"},"*\n8","(\n9",")\n0","_\n-","+\n=",{w:2},"Backspace"],
 [{w:1.5},"Tab","Q","W",{c:"#b35050"},"E\n\n\n\n\n\n\n\n\n数字层","R\n\n\n\n\n\n\n\n\n页层\n选中页","T\n\n\n\n\n\n\n\n\n数字层",{c:"#2D6CA1"},"Y\n\n\n\n\n\n\n\n\n\n最上",{c:"#407DD5"},"U\n\n\n\n\n\n\n\n\n\n上",{c:"#2D6CA1"},"I\n\n\n\n\n\n\n\n\n\n向左删","O\n\n\n\n\n\n\n\n\n\n向右删",{c:"#cccccc"},"P","{\n[","}\n]",{w:1.5},"|\n\\"],
-[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S",{c:"#b35050"},"D\n\n\n\n\n\n\n\n\n词层\n选中词","F\n\n\n\n\n\n\n\n\n行层\n选中行","G\n\n\n\n\n\n\n\n\n词层\n选中词",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n最左",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n左","K\n\n\n\n\n\n\n\n\n\n下","L\n\n\n\n\n\n\n\n\n\n右",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n最右",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
-[{w:2.25},"Shift","Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
+[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S",{c:"#b35050"},"D\n\n\n\n\n\n\n\n\n词层\n选中词","F\n\n\n\n\n\n\n\n\n行层\n选中行","G\n\n\n\n\n\n\n\n\n词层\n选中词",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n最左",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n左","K\n\n\n\n\n\n\n\n\n\n下","L\n\n\n\n\n\n\n\n\n\n右",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n最右",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
+[{c:"#b35050",w:2.25},"Shift\n\n\n\n\n\n\n\n\n选中层",{c:"#cccccc"},"Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
 [{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:5,w:6.25},"\n回车",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
 ```
 
@@ -30,7 +30,7 @@
 ["~\n`","!\n1","@\n2","#\n3","$\n4","%\n5","^\n6",{c:"#2D6CA1"},"&\n\n\n\n\n\n\n\n\n\n最上",{c:"#cccccc"},"*\n8","(\n9",")\n0","_\n-","+\n=",{w:2},"Backspace"],
 [{w:1.5},"Tab","Q","W","E","R","T",{c:"#2D6CA1"},"Y\n\n\n\n\n\n\n\n\n\n最上",{c:"#407DD5"},"U\n\n\n\n\n\n\n\n\n\n最上","I\n\n\n\n\n\n\n\n\n\n删左行","O\n\n\n\n\n\n\n\n\n\n删右行",{c:"#cccccc"},"P","{\n[","}\n]",{w:1.5},"|\n\\"],
 [{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S","D",{c:"#615555"},"F\n\n\n\n\n\n\n\n\n被占\n选中行",{c:"#cccccc"},"G",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n最左",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n最左","K\n\n\n\n\n\n\n\n\n\n最下","L\n\n\n\n\n\n\n\n\n\n最右",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n最右",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
-[{w:2.25},"Shift","Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
+[{c:"#b35050",w:2.25},"Shift\n\n\n\n\n\n\n\n\n选中层",{c:"#cccccc"},"Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
 [{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:7,w:6.25},"",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
 ```
 
@@ -38,9 +38,9 @@
 
 ```json
 ["~\n`","!\n1","@\n2","#\n3","$\n4","%\n5","^\n6",{c:"#2D6CA1"},"&\n\n\n\n\n\n\n\n\n\n最上页",{c:"#cccccc"},"*\n8","(\n9",")\n0","_\n-","+\n=",{w:2},"Backspace"],
-[{w:1.5},"Tab","Q","W","E",{c:"#615555"},"R\n\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"T",{c:"#2D6CA1"},"Y\n\n\n\n\n\n\n\n\n\n最上页",{c:"#407DD5"},"U\n\n\n\n\n\n\n\n\n\n上页","I\n\n\n\n\n\n\n\n\n\n向左删","O\n\n\n\n\n\n\n\n\n\n向右删",{c:"#cccccc"},"P","{\n[","}\n]",{w:1.5},"|\n\\"],
-[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S","D","F","G",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n左窗口",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n左标签","K\n\n\n\n\n\n\n\n\n\n下页","L\n\n\n\n\n\n\n\n\n\n右标签",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n右窗口",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
-[{w:2.25},"Shift","Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下页",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
+[{w:1.5},"Tab","Q","W","E",{c:"#615555"},"R\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"T",{c:"#2D6CA1"},"Y\n\n\n\n\n\n\n\n\n\n最上页",{c:"#407DD5"},"U\n\n\n\n\n\n\n\n\n\n上页","I\n\n\n\n\n\n\n\n\n\n向左删","O\n\n\n\n\n\n\n\n\n\n向右删",{c:"#cccccc"},"P","{\n[","}\n]",{w:1.5},"|\n\\"],
+[{c:"#615555",w:1.75},"Caps Lock\n\n\n\n\n\n\n\n\n被占",{c:"#cccccc"},"A","S","D","F","G",{c:"#2D6CA1"},"H\n\n\n\n\n\n\n\n\n\n左窗口",{c:"#407DD5"},"J\n\n\n\n\n\n\n\n\n\n左标签","K\n\n\n\n\n\n\n\n\n\n下页","L\n\n\n\n\n\n\n\n\n\n右标签",{c:"#2D6CA1"},":\n\n\n\n\n\n\n\n\n\n右窗口",{c:"#cccccc"},"\"\n'",{w:2.25},"Enter"],
+[{c:"#b35050",w:2.25},"Shift\n\n\n\n\n\n\n\n\n选中层",{c:"#cccccc"},"Z","X","C","V","B","N","M",{c:"#2D6CA1"},"<\n\n\n\n\n\n\n\n\n\n最下页",{c:"#cccccc"},">\n.","?\n/",{w:2.75},"Shift"],
 [{w:1.25},"Ctrl",{w:1.25},"Win",{w:1.25},"Alt",{a:7,w:6.25},"",{a:4,w:1.25},"Alt",{w:1.25},"Win",{w:1.25},"Menu",{w:1.25},"Ctrl"]
 ```
 
