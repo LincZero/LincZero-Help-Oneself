@@ -140,9 +140,8 @@ body .nav-files-container.node-insert-event
  * 列表内标题
  * 和引用块内标题 (后者 obsidian 实时模式不支持)
  */
-.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-list-1.cm-header) {
-	/*display: inline-block;
-	width: calc(100% - 20px);*/
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header)>span>.list-bullet::after {
+	background: black;
 }
 .HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-1),
 li[data-line="0"]>h1,
