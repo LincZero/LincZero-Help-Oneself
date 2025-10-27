@@ -7,7 +7,8 @@
 	max-width: var(--max-width-text);
 }
 :root {
-	--max-width-text: 800px;
+	--max-width-text: 830px;
+	--file-line-width: 830px;
 }
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer>*:not(iframe),
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer .frontmatter-container,

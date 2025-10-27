@@ -1,11 +1,24 @@
-/* 宽度有BUG */
-.cm-sizer {
+/* 注意只影响根editor，被嵌套的editor宽度不要影响 */
+.markdown-source-view.mod-cm6.is-readable-line-width>.cm-editor>.cm-scroller>.cm-sizer {
 	min-width: var(--max-width-text);
 	max-width: var(--max-width-text);
 }
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-line{
+.markdown-source-view.mod-cm6.is-readable-line-width>.cm-editor .cm-line{
 	max-width: var(--max-width-text);
 }
 :root {
 	--max-width-text: 1100px;
+}
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer>*:not(iframe),
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .frontmatter-container,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .block-language-tasks,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer>*:not(iframe),
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer .frontmatter-container,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer .block-language-tasks {
+	max-width: var(--max-width-text);
+	width: 100%;
+	min-width: 300px
+}
+:not(pre) > code[class*="language-"], pre[class*="language-"]{
+	background: var(--secondary-background);
 }

@@ -1,8 +1,9 @@
-.cm-sizer {
+/* 注意只影响根editor，被嵌套的editor宽度不要影响 */
+.markdown-source-view.mod-cm6.is-readable-line-width>.cm-editor>.cm-scroller>.cm-sizer {
 	min-width: var(--max-width-text);
 	max-width: var(--max-width-text);
 }
-.markdown-source-view.mod-cm6.is-readable-line-width .cm-line{
+.markdown-source-view.mod-cm6.is-readable-line-width>.cm-editor .cm-line{
 	max-width: var(--max-width-text);
 }
 :not(pre) > code[class*="language-"], pre[class*="language-"]{

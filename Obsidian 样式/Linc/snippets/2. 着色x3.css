@@ -135,3 +135,74 @@ body .nav-files-container.node-insert-event
 	fill: var(--accent-7) !important;
 	color: var(--accent-7) !important;
 }
+
+/*
+ * 列表内标题
+ * 和引用块内标题 (后者 obsidian 实时模式不支持)
+ */
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-list-1.cm-header) {
+	/*display: inline-block;
+	width: calc(100% - 20px);*/
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-1),
+li[data-line="0"]>h1,
+.el-blockquote>blockquote>h1 {
+	background: rgb(var(--accent-1-rgb));
+	color: black;
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-2),
+li[data-line="0"]>h2,
+.el-blockquote>blockquote>h2 {
+	background: rgb(var(--accent-2-rgb));
+	color: black;
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-3),
+li[data-line="0"]>h3,
+.el-blockquote>blockquote>h3 {
+	background: rgb(var(--accent-3-rgb));
+	color: black;
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-4),
+li[data-line="0"]>h4,
+.el-blockquote>blockquote>h4 {
+	background: rgb(var(--accent-4-rgb));
+	color: black;
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-5),
+li[data-line="0"]>h5,
+.el-blockquote>blockquote>h5 {
+	background: rgb(var(--accent-5-rgb));
+	color: black;
+}
+.HyperMD-list-line.HyperMD-list-line-1.cm-line:has(>.cm-header.cm-header-6),
+li[data-line="0"]>h6,
+.el-blockquote>blockquote>h6 {
+	background: rgb(var(--accent-6-rgb));
+	color: black;
+}
+
+/*
+ * 列表装饰着色 (实时模式)
+ * 话说第二层的 .cm-formatting-list 也会记层次。但那个层次每3次又从1开始计数，很奇怪
+ */
+.HyperMD-list-line-1>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-1-rgb));
+}
+.HyperMD-list-line-2>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-2-rgb));
+}
+.HyperMD-list-line-3>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-3-rgb));
+}
+.HyperMD-list-line-4>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-4-rgb));
+}
+.HyperMD-list-line-5>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-5-rgb));
+}
+.HyperMD-list-line-6>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-6-rgb));
+}
+.HyperMD-list-line-7>.cm-formatting-list>.list-bullet::after {
+	background: rgb(var(--accent-7-rgb));
+}

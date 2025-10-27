@@ -1,0 +1,9 @@
+/* 与 anyblock table-e 冲突 */
+table {
+  min-width: 0 !important; /* no 750px */
+}
+
+/* 与 anyblock col-e 冲突 */
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl) .cm-contentContainer>*:not(iframe) {
+  min-width: 0 !important; /* no 300px */
+}

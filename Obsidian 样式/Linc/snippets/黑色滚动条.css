@@ -1,0 +1,23 @@
+/* 设置滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 12px; /* 垂直滚动条的宽度 */
+  height: 12px; /* 水平滚动条的高度 */
+}
+
+/* 设置滚动条的轨道 */
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* 轨道的背景颜色 */
+  border-radius: 10px; /* 轨道的圆角 */
+}
+
+/* 设置滚动条的滑块 */
+::-webkit-scrollbar-thumb {
+  background: #333; /* 滑块的背景颜色 */
+  border-radius: 10px; /* 滑块的圆角 */
+  border: 3px solid #1e1e1e; /* 滑块的边框 */
+}
+
+/* 设置滚动条滑块在悬停时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 悬停时滑块的背景颜色 */
+}

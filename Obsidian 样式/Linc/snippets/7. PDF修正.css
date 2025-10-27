@@ -9,7 +9,7 @@
 
 /* pdf对应样式调整 */
 .print strong {
-	color: var(--accent-1);
+	color: var(--accent-1); /* 会和anyblock的dir着色冲突 */
 }
 .print em {
 	color: var(--accent-3);
