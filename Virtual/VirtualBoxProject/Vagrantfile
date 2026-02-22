@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # 镜像设置。这里使用了镜像。若链接失效则到该链接更新:
+  # https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/jammy/
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.box_url = "https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/jammy/20240912/jammy-server-cloudimg-amd64-vagrant.box"
+
+  # 设置内存和CPU数量等
+  config.vm.network "private_network", ip: "192.168.56.20"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+
+  # 在虚拟机启动时运行的 shell 命令
+  config.vm.provision "shell", inline: <<-SHELL
+    # 环境安装 - apt-get
+    apt-get update -y # 更新包列表
+    apt-get install -y software-properties-common # 安装基础工具
+    
+    # 环境安装 - python, pip, git
+    apt-get install -y python3 python3-pip git
+
+    # 环境安装 - nodejs、npm、pnpm
+    # PPA方案
+    # 为什么要执行这里的PPA：ubuntu到22也无法直接通过apt安装高版本，最多就到node12，而前端环境一般最少要node18，新一点甚至要node20。将PPA添加到配置中，就可以安装更高的版本
+    # 链接失效则到该链接更新: https://deb.nodesource.com/、https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+    sudo apt install -y nodejs
+    sudo apt install -y npm
+    sudo npm install -g pnpm
+
+    # 环境安装 - 版本打印
+    cat /etc/issue     # Ubuntu 22.04.5 LTS
+    apt --version      # apt 2.4.13 (amd64)
+    git --version      # git version 2.34.1
+    python3 --version  # Python 3.10.12
+    node --version     # v20.17.0 (注意如果不使用PPA方案，只有12.22.9，完全不够用)
+    npm --version      # 10.8.2
+    pnpm --version     # 8.11.0
+  SHELL
+end
